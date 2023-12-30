@@ -25,13 +25,9 @@ jobs:
       - name: Build Kavita
         run: ./docker-build.sh
       - name: Build and push
-        uses: docker/build-push-action@v5
+        uses: mr-smithers-excellent/docker-build-push@v6
         with:
-          image: TorchedSammy/Kavita
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: nightly
+          image: kavita
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: TorchedSammy
           password: ${{ secrets.GITHUB_TOKEN }}
