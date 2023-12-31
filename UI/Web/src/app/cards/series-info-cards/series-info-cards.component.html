@@ -1,5 +1,7 @@
 <ng-container *transloco="let t; read: 'series-info-cards'">
   <div class="row g-0 mt-3">
+    <!--
+
     <ng-container *ngIf="seriesMetadata.releaseYear > 0">
       <div class="col-lg-1 col-md-4 col-sm-4 col-4 mb-2">
         <app-icon-and-title [label]="t('release-date-title')" [clickable]="false" fontClasses="fa-regular fa-calendar" [title]="t('release-year-tooltip')">
@@ -8,6 +10,7 @@
       </div>
       <div class="vr d-none d-lg-block m-2"></div>
     </ng-container>
+    -->
 
     <ng-container *ngIf="seriesMetadata">
       <ng-container *ngIf="seriesMetadata.ageRating">
@@ -29,6 +32,7 @@
       </ng-container>
     </ng-container>
 
+    <!--
     <ng-container>
       <div class="col-lg-1 col-md-4 col-sm-4 col-4 mb-2">
         <ng-container *ngIf="seriesMetadata.publicationStatus | publicationStatus as pubStatus">
@@ -41,6 +45,7 @@
       </div>
       <div class="vr m-2 d-none d-lg-block"></div>
     </ng-container>
+    -->
 
     <ng-container *ngIf="accountService.hasValidLicense$ | async">
       <div class="col-lg-1 col-md-4 col-sm-4 col-4 mb-2">
@@ -60,7 +65,9 @@
       <div class="vr d-none d-lg-block m-2"></div>
     </ng-container>
 
+
     <ng-container *ngIf="series">
+    <!--
       <ng-container>
         <div class="d-none d-md-block col-lg-1 col-md-4 col-sm-4 col-4 mb-2">
           <app-icon-and-title [label]="t('format-title')" [clickable]="true"
@@ -71,6 +78,7 @@
         </div>
         <div class="vr d-none d-lg-block m-2"></div>
       </ng-container>
+    -->
 
       <ng-container *ngIf="series.latestReadDate && series.latestReadDate !== '' && (series.latestReadDate | date: 'shortDate') !== '1/1/01'">
         <div class="d-none d-md-block col-lg-1 col-md-4 col-sm-4 col-4 mb-2">

@@ -21,6 +21,7 @@ import {ImageService} from 'src/app/_services/image.service';
 import {CommonModule} from "@angular/common";
 import {BadgeExpanderComponent} from "../../../shared/badge-expander/badge-expander.component";
 import {SafeHtmlPipe} from "../../../_pipes/safe-html.pipe";
+import {PublicationStatusPipe} from "../../../_pipes/publication-status.pipe";
 import {ExternalRatingComponent} from "../external-rating/external-rating.component";
 import {ReadMoreComponent} from "../../../shared/read-more/read-more.component";
 import {A11yClickDirective} from "../../../shared/a11y-click.directive";
@@ -29,6 +30,7 @@ import {NgbCollapse} from "@ng-bootstrap/ng-bootstrap";
 import {SeriesInfoCardsComponent} from "../../../cards/series-info-cards/series-info-cards.component";
 import {LibraryType} from "../../../_models/library/library";
 import {MetadataDetailComponent} from "../metadata-detail/metadata-detail.component";
+import {MetadataDetailTitlelessComponent} from "../metadata-detail-titleless/metadata-detail-titleless.component";
 import {TranslocoDirective} from "@ngneat/transloco";
 import {FilterField} from "../../../_models/metadata/v2/filter-field";
 import {FilterComparison} from "../../../_models/metadata/v2/filter-comparison";
@@ -38,9 +40,9 @@ import {ImageComponent} from "../../../shared/image/image.component";
 @Component({
   selector: 'app-series-metadata-detail',
   standalone: true,
-  imports: [CommonModule, TagBadgeComponent, BadgeExpanderComponent, SafeHtmlPipe, ExternalRatingComponent,
+  imports: [CommonModule, TagBadgeComponent, BadgeExpanderComponent, SafeHtmlPipe, PublicationStatusPipe, ExternalRatingComponent,
     ReadMoreComponent, A11yClickDirective, PersonBadgeComponent, NgbCollapse, SeriesInfoCardsComponent,
-    MetadataDetailComponent, TranslocoDirective, ImageComponent],
+    MetadataDetailComponent, MetadataDetailTitlelessComponent, TranslocoDirective, ImageComponent],
   templateUrl: './series-metadata-detail.component.html',
   styleUrls: ['./series-metadata-detail.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -120,6 +122,10 @@ export class SeriesMetadataDetailComponent implements OnChanges {
 
   navigate(basePage: string, id: number) {
     this.router.navigate([basePage, id]);
+  }
+
+  upper(text: string) {
+    return text.toLocaleUpperCase()
   }
 
   protected readonly Breakpoint = Breakpoint;

@@ -2,12 +2,15 @@
   <div class="col-auto custom-col clickable" [ngbPopover]="popContent"
        popoverTitle="Your Rating + Overall" [popoverClass]="utilityService.getActiveBreakpoint() > Breakpoint.Mobile ? 'md-popover' : 'lg-popover'">
     <span class="badge rounded-pill ps-0 me-1">
-<!--      <img class="me-1" ngSrc="assets/images/logo-32.png" width="24" height="24" alt="">-->
+<!--      <img class="me-1" ngSrc="assets/images/logo-32.png" width="24" height="24" alt="">
       <app-image classes="me-1" imageUrl="assets/images/logo-32.png" width="24px" height="24px" />
       <ng-container *ngIf="hasUserRated; else notYetRated">{{userRating * 20}}</ng-container>
       <ng-template #notYetRated>N/A</ng-template>
       <ng-container *ngIf="overallRating > 0"> + {{overallRating}}</ng-container>
       <ng-container *ngIf="hasUserRated || overallRating > 0">%</ng-container>
+-->
+      <ngx-stars [initialStars]="userRating" (ratingOutput)="updateRating($event)" [size]="utilityService.getActiveBreakpoint() > Breakpoint.Mobile ? 1 : 2"
+        [maxStars]="5" [color]="starColor"></ngx-stars>
     </span>
   </div>
 

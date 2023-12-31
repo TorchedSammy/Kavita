@@ -1,11 +1,12 @@
 img {
-    width: 100%;
-    transition: opacity 1s;
+  width: 100%;
+  transition: opacity 3s;
+  border-radius: 1%;
 }
 
 .fade-in {
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .fade-in.loaded {

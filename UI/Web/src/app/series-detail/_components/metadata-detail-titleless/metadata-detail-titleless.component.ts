@@ -9,14 +9,14 @@ import {FilterField} from "../../../_models/metadata/v2/filter-field";
 import {Breakpoint, UtilityService} from "../../../shared/_services/utility.service";
 
 @Component({
-  selector: 'app-metadata-detail',
+  selector: 'app-metadata-detail-titleless',
   standalone: true,
   imports: [CommonModule, A11yClickDirective, BadgeExpanderComponent, TagBadgeComponent],
-  templateUrl: './metadata-detail.component.html',
-  styleUrls: ['./metadata-detail.component.scss'],
+  templateUrl: './metadata-detail-titleless.component.html',
+  styleUrls: ['./metadata-detail-titleless.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MetadataDetailComponent {
+export class MetadataDetailTitlelessComponent {
 
   private readonly filterUtilityService = inject(FilterUtilitiesService);
   public readonly utilityService = inject(UtilityService);
