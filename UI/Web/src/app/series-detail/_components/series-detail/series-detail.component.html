@@ -72,8 +72,10 @@
             <div *ngIf="seriesMetadata" class="mt-2">
             <ng-container *transloco="let t; read: 'series-info-cards'">
               <ng-container *ngIf="seriesMetadata.publicationStatus | publicationStatus as pubStatus">
-                <p class="publication">{{ upper(t('publication-status-title')) }}: {{ upper(seriesMetadata.releaseYear.toString()) }}, {{
-                  upper(pubStatus) }}</p>
+                <p class="publication">{{ upper(t('publication-status-title')) }}:
+                  <span *ngIf="seriesMetadata.releaseYear > 0">{{ upper(seriesMetadata.releaseYear.toString()) }}, </span>
+                  {{ upper(pubStatus) }}
+                </p>
               </ng-container>
             </ng-container>
             </div>
@@ -141,6 +143,7 @@
             [libraryType]="libraryType" [hasReadingProgress]="hasReadingProgress"></app-series-metadata-detail>
         </div>
       </div>
+<!-- TODO: MOVE DOWN
 
       <div class="row pt-4">
         <app-carousel-reel [items]="reviews" [alwaysShow]="true" [title]="t('user-reviews-alt')"
@@ -151,7 +154,8 @@
           </ng-template>
         </app-carousel-reel>
       </div>
-    </div>
+-->
+  </div>
 
     <ng-container *ngIf="series">
       <app-bulk-operations [actionCallback]="bulkActionCallback"></app-bulk-operations>
