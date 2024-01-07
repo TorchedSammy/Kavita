@@ -1,16 +1,21 @@
 @import '../variables';
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600&display=swap');
+
 :root, :root .default {
     /* Base colors */
-    --primary-color: #4ac694;
-    --primary-color-dark-shade: #3B9E76;
-    --primary-color-darker-shade: #338A67;
-    --primary-color-darkest-shade: #25624A;
+    --primary-color: #9e8bff;
+    --bs-border-color: var(--primary-color);
+    --bs-primary-rgb: var(--primary-color);
+    --primary-color-dark-shade: #9e8bff;
+    --primary-color-darker-shade: #9e8bff;
+    --primary-color-darkest-shade: #9e8bff;
     --error-color: #BD362F;
-    --bs-body-bg: #343a40;
+    --bs-body-bg: #000000;
     --body-text-color: #efefef;
     --btn-icon-filter: invert(1) grayscale(100%) brightness(200%);
-    --primary-color-scrollbar: rgba(74,198,148,0.75);
+    --primary-color-scrollbar: var(--primary-color);
     --text-muted-color: lightgrey;
 
     /* Meta and Globals */
@@ -20,7 +25,7 @@
 
 
     /* Navbar */
-    --navbar-bg-color: black;
+    --navbar-bg-color: rgba(0, 0, 0, 0.35);
     --navbar-text-color: white;
     --navbar-fa-icon-color: white;
     --navbar-btn-hover-outline-color: rgba(255, 255, 255, 1);
@@ -54,7 +59,7 @@
     --bs-btn-disabled-border-color: transparent;
 
     /* Nav (Tabs) */
-    --nav-tab-border-color: rgba(44, 118, 88, 0.7);
+    --nav-tab-border-color: var(--primary-color);
     --nav-tab-text-color: var(--body-text-color);
     --nav-tab-bg-color: var(--primary-color);
     --nav-tab-hover-border-color: var(--primary-color);
@@ -80,7 +85,7 @@
     --nav-header-bg-color: rgb(22, 27, 34);
 
     /* Toasts */
-    --toast-success-bg-color: rgba(59, 158, 118, 0.9);
+    --toast-success-bg-color: var(--primary-color);
     --toast-error-bg-color: #BD362F;
     --toast-info-bg-color: #2F96B4;
     --toast-warning-bg-color: #F89406;
@@ -182,7 +187,8 @@
     --ratingstar-star-filled: var(--primary-color);
 
     /* Global */
-    --hr-color: rgba(239, 239, 239, 0.125);
+    //--hr-color: rgba(239, 239, 239, 0.125);
+    --hr-color: var(--primary-color);
     --accent-bg-color: rgba(1, 4, 9, 0.5);
     --accent-text-color: lightgrey;
     --grid-breakpoints-xs: $grid-breakpoints-xs;
@@ -190,8 +196,8 @@
     --grid-breakpoints-md: $grid-breakpoints-md;
     --grid-breakpoints-lg: $grid-breakpoints-lg;
     --grid-breakpoints-xl: $grid-breakpoints-xl;
-    --body-font-family: "EBGaramond", "Helvetica Neue", sans-serif;
-    --brand-font-family: "Spartan", sans-serif;
+    --body-font-family: "Poppins", "Helvetica Neue", sans-serif;
+    --brand-font-family: "Poppins", sans-serif;
 
     /* Card */
     --card-bg-color: rgba(22,27,34,0.5);
@@ -255,5 +261,43 @@
 
     /** Rating Star Color **/
     --rating-star-color: var(--primary-color);
+}
 
-  }
+nav, .navbar {
+    backdrop-filter: blur(32px);
+}
+
+.container-fluid > div {
+    padding: 0 !important;
+}
+
+h2 {
+    font-size: 52px;
+    font-weight: bold;
+}
+
+h6 {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+app-user-login h2 {
+    font-family: 'League Spartan', sans-serif;
+}
+
+.publication {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+
+app-card-item .badge {
+    background-color: var(--primary-color) !important;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+app-read-more .collapsed {
+    mask-image: linear-gradient(black 0%, black 60%, transparent 100%);
+    margin-bottom: 0;
+}
