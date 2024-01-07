@@ -1,25 +1,29 @@
 .login {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: calc(var(--vh, 1vh) * 100 - 57px);
-    min-height: 289px;
-    position: relative;
-    width: 100vw;
-    max-width: 100vw;
+    //display: flex;
+    //align-items: center;
+    //justify-content: center;
+    height: 100vh;
+    //min-height: 289px;
+    //position: relative;
+    //width: 100vw;
+    //max-width: 100vw;
+    background: 8rem no-repeat url('https://64.media.tumblr.com/f9aad75f592b0d3cf912c1b6de294c6c/37b95bb9c72f7615-6a/s1280x1920/4a3a9a21c92a7724963c80274fb21585395d3535.png'), #111111 !important;
+    background-position: bottom left calc(50% - -25vw) !important;
+    background-size: min(720px, 40%);
 
-
+/*
     &::before {
-        content: "";
         background-image: url('../../../../assets/images/login-bg.jpg');
         background-size: cover;
+        content: "";
         position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
-        opacity: 0.1;
+        opacity: 1;
         width: 100%;
     }
+*/  
 
     .logo-container {
         .logo {
@@ -29,10 +33,12 @@
     }
 
     .card {
-        background-color: var(--primary-color);
+        box-shadow: 0 0 20px 20px rgb(0 0 0 / 30%) !important;
+        background-color: #212328;
         color: #fff;
-        min-width: 300px;
-        max-width: 12rem;
+        padding: 20px 40px 30px 40px;
+        //min-width: 300px;
+        //max-width: 12rem;
 
         &:focus {
             border: 2px solid white;
@@ -41,15 +47,17 @@
 
 
         .card-title {
-            font-family: 'Spartan', sans-serif;
-            font-weight: bold;
-            display: inline-block;
-            vertical-align: middle;
-            width: 100%;
+            font-family: 'League Spartan', sans-serif;
+            font-weight: 600;
         }
 
         .card-text {
             font-family: "EBGaramond", "Helvetica Neue", sans-serif;
         }
     }
+}
+
+.wordmark {
+    font-size: 2rem;
+    font-weight: 600;
 }

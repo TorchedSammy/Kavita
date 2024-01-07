@@ -9,6 +9,7 @@ import { MemberService } from '../../_services/member.service';
 import { NavService } from '../../_services/nav.service';
 import { NgIf } from '@angular/common';
 import { SplashContainerComponent } from '../_components/splash-container/splash-container.component';
+import {ImageComponent} from '../../shared/image/image.component';
 import {TRANSLOCO_SCOPE, TranslocoDirective} from "@ngneat/transloco";
 
 
@@ -18,7 +19,7 @@ import {TRANSLOCO_SCOPE, TranslocoDirective} from "@ngneat/transloco";
     styleUrls: ['./user-login.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-  imports: [SplashContainerComponent, NgIf, ReactiveFormsModule, RouterLink, TranslocoDirective]
+  imports: [SplashContainerComponent, ImageComponent, NgIf, ReactiveFormsModule, RouterLink, TranslocoDirective]
 })
 export class UserLoginComponent implements OnInit {
 
