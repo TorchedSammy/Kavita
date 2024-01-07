@@ -135,10 +135,10 @@
 
   </div>
 
-  <div class="row g-0">
-    <hr class="col mt-3" *ngIf="hasExtendedProperties">
+  <div>
+    <!--<hr *ngIf="hasExtendedProperties">-->
     <a [class.hidden]="hasExtendedProperties" *ngIf="hasExtendedProperties"
-      class="col col-md-auto align-self-end read-more-link" (click)="toggleView()">
+      class="d-flex justify-content-center align-items-center hidden read-more-link" (click)="toggleView()">
       <i aria-hidden="true" class="fa fa-caret-{{isCollapsed ? 'down' : 'up'}} me-1"
         aria-controls="extended-series-metadata"></i>
       {{isCollapsed ? t('see-more') : t('see-less')}}
