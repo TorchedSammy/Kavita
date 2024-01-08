@@ -36,9 +36,9 @@
         box-shadow: 0 0 20px 20px rgb(0 0 0 / 30%) !important;
         background-color: #212328;
         color: #fff;
-        padding: 20px 40px 30px 40px;
-        //min-width: 300px;
-        //max-width: 12rem;
+        .content { padding: 20px 40px 30px 40px; }
+        //width: clamp(100%/(N + 1) + 0.1%, (400px - 100vw)*1000, 100%);
+        max-width: 500px;
 
         &:focus {
             border: 2px solid white;
@@ -53,6 +53,14 @@
 
         .card-text {
             font-family: "EBGaramond", "Helvetica Neue", sans-serif;
+        }
+
+        .card-footer {
+            background-color: #2e2f37;
+            background-clip: border-box;
+            padding: 12px 35px;
+            font-size: 16px;
+            font-family: 'League Spartan', sans-serif;
         }
     }
 }

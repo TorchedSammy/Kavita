@@ -508,7 +508,7 @@
     },
 
     "reset-password": {
-        "title": "Password Reset",
+        "title": "Forgot Your Password?",
         "description": "Enter the email of your account. Kavita will send you an email if a valid one on file, otherwise ask the admin for the link from logs.",
         "email-label": "{{common.email}}",
         "required-field": "{{validation.required-field}}",

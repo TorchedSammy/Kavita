@@ -1,19 +1,19 @@
 <ng-container *transloco="let t; read: 'login'">
   <app-splash-container>
-    <ng-container title><h2>{{t('title')}}</h2></ng-container>
+    <ng-container title><h1>{{t('title')}}</h1></ng-container>
     <ng-container body>
       <ng-container *ngIf="isLoaded">
         <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate class="needs-validation" *ngIf="!firstTimeFlow">
           <div class="card-text">
             <div class="mb-3">
               <label for="username" class="form-label">{{t('username')}}</label>
-              <input class="form-control custom-input" formControlName="username" id="username"
+              <input class="form-control border-0" formControlName="username" id="username"
                      type="text" autofocus>
             </div>
 
             <div class="mb-2">
               <label for="password" class="form-label">{{t('password')}}</label>
-              <input class="form-control custom-input" formControlName="password" name="password"
+              <input class="form-control border-0" formControlName="password" name="password"
                      id="password" type="password" pattern="^.{6,32}$">
               <div id="inviteForm-validations" class="invalid-feedback" *ngIf="loginForm.get('password')?.errors?.pattern"  >
                 <div class="" *ngIf="loginForm.get('password')?.errors?.pattern">
@@ -22,19 +22,20 @@
               </div>
             </div>
 
-            <div class="mb-3">
-              <a routerLink="/registration/reset-password" style="color: white">{{t('forgot-password')}}</a>
+            <div class="mb-3 mt-3">
+              <a routerLink="/registration/reset-password" class="text-primary">{{t('forgot-password')}}</a>
             </div>
 
             <div>
               <button class="btn btn-primary alt" type="submit" [disabled]="isSubmitting">{{t('submit')}}</button>
             </div>
+            <!--<a class="text-primary">Try Another Way</a>-->
           </div>
         </form>
       </ng-container>
     </ng-container>
     <ng-container footer>
-      <p class="text-center">New user? <a class="text-primary">Register</a></p>
+      <p class="text-center" style="margin-bottom: 0;">New user? <a class="text-primary">Register</a></p>
     </ng-container>
   </app-splash-container>
 </ng-container>

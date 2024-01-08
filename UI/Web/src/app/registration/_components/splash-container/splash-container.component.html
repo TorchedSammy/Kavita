@@ -5,17 +5,19 @@
             <span class="wordmark">Kavita</span>
         </div>
         <div class="card border-primary border-top border-4">
-            <span>
-                <div class="logo-container">
-                    <h3 class="card-title text-center">
-                        <ng-content select="[title]"></ng-content>
-                    </h3>
+            <div class="content">
+                <span>
+                    <div class="logo-container">
+                        <h3 class="card-title text-center">
+                            <ng-content select="[title]"></ng-content>
+                        </h3>
+                    </div>
+                </span>
+                <div class="card-text">
+                    <ng-content select="[body]"></ng-content>
                 </div>
-            </span>
-            <div class="card-text">
-                <ng-content select="[body]"></ng-content>
             </div>
-            <div class="card-footer">
+            <div class="card-footer text-secondary">
                 <ng-content select="[footer]"></ng-content>
             </div>
         </div>

@@ -4,10 +4,12 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600&display=swap');
 
 :root, :root .default {
+    --input-bg-color: #3d414a;
+    --bs-primary-rgb: 158, 139, 255;
+    --bs-secondary-rgb: 178, 178, 178;
     /* Base colors */
     --primary-color: #9e8bff;
     --bs-border-color: var(--primary-color);
-    --bs-primary-rgb: var(--primary-color);
     --primary-color-dark-shade: #9e8bff;
     --primary-color-darker-shade: #9e8bff;
     --primary-color-darkest-shade: #9e8bff;
@@ -261,6 +263,17 @@
 
     /** Rating Star Color **/
     --rating-star-color: var(--primary-color);
+}
+
+/* Login */
+label {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1rem;
+}
+.login h1 {
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0 1rem 1rem 1rem;
 }
 
 nav, .navbar {
