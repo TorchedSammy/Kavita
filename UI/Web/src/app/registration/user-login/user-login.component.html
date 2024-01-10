@@ -1,6 +1,6 @@
 <ng-container *transloco="let t; read: 'login'">
   <app-splash-container>
-    <ng-container title><h1>{{t('title')}}</h1></ng-container>
+    <ng-container title><h1 class="m-3 mt-0">{{t('title')}}</h1></ng-container>
     <ng-container body>
       <ng-container *ngIf="isLoaded">
         <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate class="needs-validation" *ngIf="!firstTimeFlow">
