@@ -287,10 +287,6 @@ span .logo {
 	display: none;
 }
 
-span .logo:after {
-	content: 'Lunarie' !important;
-}
-
 app-card-item .badge {
 	background-color: var(--primary-color) !important;
 	font-size: 14px;
