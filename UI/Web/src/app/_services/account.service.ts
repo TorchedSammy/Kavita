@@ -10,7 +10,6 @@ import { EVENTS, MessageHubService } from './message-hub.service';
 import { ThemeService } from './theme.service';
 import { InviteUserResponse } from '../_models/auth/invite-user-response';
 import { UserUpdateEvent } from '../_models/events/user-update-event';
-import { UpdateEmailResponse } from '../_models/auth/update-email-response';
 import { AgeRating } from '../_models/metadata/age-rating';
 import { AgeRestriction } from '../_models/metadata/age-restriction';
 import { TextResonse } from '../_types/text-response';
@@ -30,6 +29,7 @@ export enum Role {
 export class AccountService {
 
   private readonly destroyRef = inject(DestroyRef);
+
   baseUrl = environment.apiUrl;
   userKey = 'kavita-user';
   public static lastLoginKey = 'kavita-lastlogin';
@@ -88,6 +88,10 @@ export class AccountService {
     return this.httpClient.delete<string>(this.baseUrl + 'license', TextResonse);
   }
 
+  resetLicense(license: string, email: string) {
+    return this.httpClient.post<string>(this.baseUrl + 'license/reset', {license, email}, TextResonse);
+  }
+
   hasValidLicense(forceCheck: boolean = false) {
     return this.httpClient.get<string>(this.baseUrl + 'license/valid-license?forceCheck=' + forceCheck, TextResonse)
       .pipe(
@@ -109,8 +113,8 @@ export class AccountService {
       );
   }
 
-  updateUserLicense(license: string, email: string) {
-  return this.httpClient.post<string>(this.baseUrl + 'license', {license, email}, TextResonse)
+  updateUserLicense(license: string, email: string, discordId?: string) {
+  return this.httpClient.post<string>(this.baseUrl + 'license', {license, email, discordId}, TextResonse)
     .pipe(map(res => res === "true"));
   }
 
@@ -185,8 +189,9 @@ export class AccountService {
     return this.httpClient.get<boolean>(this.baseUrl + 'account/email-confirmed');
   }
 
-  migrateUser(model: {email: string, username: string, password: string, sendEmail: boolean}) {
-    return this.httpClient.post<string>(this.baseUrl + 'account/migrate-email', model, TextResonse);
+  isEmailValid() {
+    return this.httpClient.get<string>(this.baseUrl + 'account/is-email-valid', TextResonse)
+      .pipe(map(res => res == "true"));
   }
 
   confirmMigrationEmail(model: {email: string, token: string}) {
@@ -240,7 +245,7 @@ export class AccountService {
   }
 
   updateEmail(email: string, password: string) {
-    return this.httpClient.post<UpdateEmailResponse>(this.baseUrl + 'account/update/email', {email, password});
+    return this.httpClient.post<InviteUserResponse>(this.baseUrl + 'account/update/email', {email, password});
   }
 
   updateAgeRestriction(ageRating: AgeRating, includeUnknowns: boolean) {

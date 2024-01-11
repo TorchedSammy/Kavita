@@ -7,7 +7,7 @@
       "name": "GPL-3.0",
       "url": "https://github.com/Kareadita/Kavita/blob/develop/LICENSE"
     },
-    "version": "0.7.11.5"
+    "version": "0.7.12.1"
   },
   "servers": [
     {
@@ -869,6 +869,36 @@
               "text/json": {
                 "schema": {
                   "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Account/is-email-valid": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Is the user's current email valid or not",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
                 }
               }
             }
@@ -3048,6 +3078,37 @@
         ],
         "summary": "Updates server license",
         "description": "Caches the result",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLicenseDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLicenseDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLicenseDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/License/reset": {
+      "post": {
+        "tags": [
+          "License"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -7274,6 +7335,7 @@
         "tags": [
           "Scrobbling"
         ],
+        "summary": "Get the current user's AniList token",
         "responses": {
           "200": {
             "description": "Success"
@@ -7286,7 +7348,9 @@
         "tags": [
           "Scrobbling"
         ],
+        "summary": "Update the current user's AniList token",
         "requestBody": {
+          "description": "",
           "content": {
             "application/json": {
               "schema": {
@@ -7317,10 +7381,12 @@
         "tags": [
           "Scrobbling"
         ],
+        "summary": "Checks if the current Scrobbling token for the given Provider has expired for the current user",
         "parameters": [
           {
             "name": "provider",
             "in": "query",
+            "description": "",
             "schema": {
               "enum": [
                 0,
@@ -14868,6 +14934,16 @@
             "type": "integer",
             "format": "int64",
             "nullable": true
+          },
+          "provider": {
+            "enum": [
+              0,
+              1,
+              2
+            ],
+            "type": "integer",
+            "description": "Misleading name but is the source of data (like a review coming from AniList)",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -17107,6 +17183,10 @@
             "type": "string",
             "description": "A query to search against",
             "nullable": true
+          },
+          "includeReviews": {
+            "type": "boolean",
+            "description": "Include reviews in the result - Note: Review Scrobbling is disabled"
           }
         },
         "additionalProperties": false
@@ -19087,6 +19167,11 @@
             "type": "string",
             "description": "Email registered with Stripe",
             "nullable": true
+          },
+          "discordId": {
+            "type": "string",
+            "description": "Optional DiscordId",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -19546,11 +19631,6 @@
           "seriesId": {
             "type": "integer",
             "format": "int32"
-          },
-          "tagline": {
-            "maxLength": 120,
-            "type": "string",
-            "nullable": true
           },
           "body": {
             "type": "string",

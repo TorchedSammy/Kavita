@@ -1,24 +1,20 @@
 name: Bug Report
 description: Create a report to help us improve
-title: ""
+title: "Bug Title Here"  # Add a title field
 labels: ["needs-triage"]
-assignees:
 body:
   - type: markdown
     attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report!
+      value: "Thanks for taking the time to fill out this bug report!"
   - type: markdown
     attributes:
-      value: |
-        If you have a feature request, please go to our [Feature Requests](https://feats.kavitareader.com) page.
+      value: "If you have a feature request, please submit on [Github Discussions](https://github.com/Kareadita/Kavita/discussions/2529)."
   - type: textarea
     id: what-happened
     attributes:
       label: What happened?
-      description: Also tell us, what steps you took so we can try to reproduce.
+      description: Also tell us what steps you took so we can try to reproduce.
       placeholder: Tell us what you see!
-      value: ""
     validations:
       required: true
   - type: textarea
@@ -27,16 +23,14 @@ body:
       label: What did you expect?
       description: What did you expect to happen?
       placeholder: Tell us what you expected to see!
-      value: ""
     validations:
       required: true
   - type: textarea
     id: version
     attributes:
       label: Version
-      description: What version of our software are you running?
+      description: What version are you running?
       placeholder: Can be found by going to Server Settings > System
-      value: ""
     validations:
       required: true
   - type: dropdown
@@ -52,7 +46,7 @@ body:
   - type: dropdown
     id: desktop-OS
     attributes:
-      label: If issue being seen on Desktop, what OS are you running where you see the issue?
+      label: If the issue is being seen on Desktop, what OS are you running where you see the issue?
       multiple: false
       options:
         - Windows
@@ -61,7 +55,7 @@ body:
   - type: dropdown
     id: desktop-browsers
     attributes:
-      label: If issue being seen on Desktop, what browsers are you seeing the problem on?
+      label: If the issue is being seen in the UI, what browsers are you seeing the problem on?
       multiple: true
       options:
         - Firefox
@@ -71,7 +65,7 @@ body:
   - type: dropdown
     id: mobile-OS
     attributes:
-      label: If issue being seen on Mobile, what OS are you running where you see the issue?
+      label: If the issue is being seen on Mobile, what OS are you running where you see the issue?
       multiple: false
       options:
         - Android
@@ -79,7 +73,7 @@ body:
   - type: dropdown
     id: mobile-browsers
     attributes:
-      label: If issue being seen on Mobile, what browsers are you seeing the problem on?
+      label: If the issue is being seen on the UI, what browsers are you seeing the problem on?
       multiple: true
       options:
         - Firefox
@@ -97,7 +91,6 @@ body:
     attributes:
       label: Additional Notes
       description: Any other information about the issue not covered in this form?
-      placeholder: e.g. Running Kavita on a raspberry pi
-      value: ""
+      placeholder: e.g. Running Kavita on a Raspberry Pi, updating from X version, using LSIO container, etc
     validations:
       required: true

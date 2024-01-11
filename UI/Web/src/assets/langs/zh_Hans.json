@@ -56,10 +56,11 @@
     },
     "review-series-modal": {
         "title": "编辑评论",
-        "tagline-label": "标语",
         "review-label": "评论",
         "close": "关闭",
-        "save": "保存"
+        "save": "保存",
+        "min-length": "评论必须至少有 {{count}} 个字符",
+        "required": "{{validation.required-field}}"
     },
     "review-card-modal": {
         "close": "关闭",
@@ -70,7 +71,7 @@
     "review-card": {
         "your-review": "我的评论",
         "external-review": "外部评论",
-        "local-review": "评论",
+        "local-review": "本地评论",
         "rating-percentage": "评分 {{r}}%"
     },
     "want-to-read": {
@@ -230,7 +231,9 @@
         "reset": "重置",
         "edit": "编辑",
         "cancel": "取消",
-        "save": "保存"
+        "save": "保存",
+        "valid-email": "{{validation.valid-email}}",
+        "has-invalid-email": "您似乎没有设置有效的电子邮件。更改电子邮件将要求管理员向您发送链接以完成此操作。"
     },
     "change-age-restriction": {
         "age-restriction-label": "年龄限制",
@@ -498,7 +501,9 @@
         "invite-url-label": "邀请链接",
         "invite": "邀请",
         "inviting": "正在邀请…",
-        "cancel": "{{common.cancel}}"
+        "cancel": "{{common.cancel}}",
+        "email-not-sent": "{{toasts.email-not-sent}}",
+        "notice": "{{manage-settings.notice}}"
     },
     "library-selector": {
         "title": "资料库",
@@ -523,8 +528,13 @@
         "activate-description": "输入用于注册 Stripe 的许可证密钥和电子邮件",
         "activate-license-label": "许可证密钥",
         "activate-email-label": "{{common.email}}",
-        "activate-delete": "删除",
-        "activate-save": "{{common.save}}"
+        "activate-delete": "{{common.delete}}",
+        "activate-save": "{{common.save}}",
+        "activate-discordId-label": "Discord 用户 ID",
+        "activate-reset": "{{common.reset}}",
+        "activate-discordId-tooltip": "将您的 Discord 帐户与 Kavita+ 关联。这使您可以访问隐藏的渠道来帮助塑造 Kavita。",
+        "discord-validation": "这不是有效的 Discord 用户 ID。您的用户 ID 不是您的 Discord 用户名。",
+        "activate-reset-tooltip": "解除您与此服务器的许可证的绑定。需要许可证和电子邮件。"
     },
     "book-line-overlay": {
         "copy": "复制",
@@ -682,7 +692,8 @@
         "clear": "{{common.clear}}",
         "donate": "捐助",
         "back": "后退",
-        "more": "更多"
+        "more": "更多",
+        "donate-tooltip": "您可以通过订阅 Kavita+ 来删除此内容"
     },
     "library-settings-modal": {
         "close": "{{common.close}}",
@@ -1116,7 +1127,8 @@
         "online-now-tooltip": "在线",
         "sharing-title": "共享：",
         "no-data": "没有其他用户。",
-        "loading": "{{common.loading}}"
+        "loading": "{{common.loading}}",
+        "username-pattern": "用户名只能包含以下字符和空格： {{characters}}"
     },
     "edit-collection-tags": {
         "title": "编辑{{collectionName}} 收藏",
@@ -1563,7 +1575,6 @@
         "no-updates": "暂无可用更新",
         "confirm-delete-user": "您确定要删除此用户吗？",
         "user-deleted": "{{user}}已被删除",
-        "email-sent-to-user": "已向{{user}}发送电子邮件",
         "click-email-link": "请点击此链接确认您的电子邮件。您必须确认后才能登录。",
         "series-added-to-collection": "系列已添加到{{collectionName}}收藏集",
         "no-series-collection-warning": "警告！未选择任何系列，保存将删除该收藏集。您确定要继续吗？",
@@ -1613,7 +1624,7 @@
         "library-created": "资料库创建成功。已开始扫描。",
         "anilist-token-updated": "已更新AniList令牌",
         "age-restriction-updated": "年龄限制已更新",
-        "email-sent-to-no-existing": "已向{{email}}发送确认邮件。",
+        "email-sent-to-no-existing": "现有电子邮件无效。链接已转储到日志中。向管理员询问链接以完成电子邮件更改。",
         "email-sent-to": "已向您的旧电子邮件地址发送确认邮件。",
         "change-email-private": "服务器不可公开访问。请向管理员索取您的确认链接，该链接可以从日志中获取",
         "device-updated": "设备已更新",
@@ -1630,7 +1641,10 @@
         "smart-filter-updated": "已创建/已更新智能筛选器",
         "confirm-delete-smart-filter": "您是否确定要删除此智能筛选器？",
         "smart-filter-deleted": "智能筛选器已删除",
-        "external-source-already-exists": "已经存在具有相同名称、主机、API密匙的外部源"
+        "external-source-already-exists": "已经存在具有相同名称、主机、API密匙的外部源",
+        "k+-reset-key": "这会将您的密钥与服务器解开，并允许您重新注册 Kavita 实例。",
+        "k+-reset-key-success": "您的许可证尚未注册。使用“编辑”按钮重新注册您的实例并重新激活 Kavita+",
+        "email-not-sent": "存档的电子邮件不是有效的电子邮件，无法发送。链接已转储到日志中。管理员可以提供此链接来完成流程。"
     },
     "actionable": {
         "scan-library": "扫描资料库",
@@ -1872,7 +1886,8 @@
         "vols-and-chapters": "{{volCount}}卷/{{chpCount}}章节",
         "tags-label": "{{filter-field-pipe.tags}}",
         "remove-from-want-to-read": "{{actionable.remove-from-want-to-read}}",
-        "add-to-want-to-read": "{{actionable.add-to-want-to-read}}"
+        "add-to-want-to-read": "{{actionable.add-to-want-to-read}}",
+        "provided-by-label": "由...提供"
     },
     "customize-dashboard-streams": {
         "no-data": "所有智能筛选已加入仪表板或尚未创建。",

@@ -4,7 +4,7 @@
         "username": "{{common.username}}",
         "password": "{{common.password}}",
         "password-validation": "{{validation.password-validation}}",
-        "forgot-password": "Password Dimenticata?",
+        "forgot-password": "Password dimenticata?",
         "submit": "{{common.submit}}"
     },
     "dashboard": {
@@ -56,7 +56,6 @@
     },
     "review-series-modal": {
         "title": "Modifica revisione",
-        "tagline-label": "Slogan",
         "review-label": "Revisione",
         "close": "{{common.close}}",
         "save": "{{common.save}}"
@@ -803,7 +802,7 @@
         "not-defined": "Non definito",
         "read": "{{common.read}}",
         "unread": "Non letto",
-        "files": "Files",
+        "files": "File",
         "pages": "Pagine:",
         "added": "Aggiunto:",
         "size": "Dimensione:"
@@ -1563,7 +1562,6 @@
         "no-updates": "Nessun aggiornamento disponibile",
         "confirm-delete-user": "Sei sicuro di voler eliminare questo utente?",
         "user-deleted": "{{utente}} è stato eliminato",
-        "email-sent-to-user": "Email inviata a {{utente}}",
         "click-email-link": "Fai clic su questo collegamento per confermare la tua email. È necessario confermarlo per poter accedere.",
         "series-added-to-collection": "Serie aggiunta alla raccolta {{collectionName}}",
         "no-series-collection-warning": "Avvertimento! Nessuna serie selezionata, il salvataggio eliminerà la raccolta. Sei sicuro di voler continuare?",
@@ -1634,19 +1632,19 @@
     },
     "actionable": {
         "scan-library": "Scansione libreria",
-        "refresh-covers": "Aggiorna Copertine",
-        "analyze-files": "Analizza File",
+        "refresh-covers": "Aggiorna le copertine",
+        "analyze-files": "Analizza i file",
         "settings": "Impostazioni",
         "edit": "Modifica",
         "mark-as-read": "Segna come Letto",
-        "mark-as-unread": "Segna come non Letto",
+        "mark-as-unread": "Segna come non letto",
         "scan-series": "Analizza Serie",
         "add-to": "Aggiungi a",
         "add-to-want-to-read": "—",
         "remove-from-want-to-read": "Rimuovi da Vuoi leggere",
-        "remove-from-on-deck": "Rimuovi dal Ponte",
+        "remove-from-on-deck": "Rimuovi dal primo piano",
         "others": "Altri",
-        "add-to-reading-list": "Aggiungi alla Lista di Lettura",
+        "add-to-reading-list": "Aggiungi alla lista di lettura",
         "add-to-collection": "Aggiungi alla Collezzione",
         "send-to": "Invia a",
         "delete": "Elimina",
@@ -1688,7 +1686,7 @@
     },
     "validation": {
         "required-field": "Il campo è richiesto",
-        "valid-email": "Questa email deve essere valida",
+        "valid-email": "Questa e-mail deve essere valida",
         "password-validation": "La password deve avere una lunghezza compresa tra 6 e 32 caratteri"
     },
     "entity-type": {
@@ -1696,7 +1694,7 @@
         "chapter": "capitolo",
         "series": "serie",
         "bookmark": "segnalibro",
-        "logs": "logs"
+        "logs": "registri"
     },
     "common": {
         "reset-to-default": "Riportare alle condizioni originali",
@@ -1711,7 +1709,7 @@
         "edit": "Modifica",
         "help": "Aiuto",
         "submit": "Invia",
-        "email": "Email",
+        "email": "E-mail",
         "read": "Leggi",
         "loading": "Caricamento…",
         "username": "Nome Utente",
