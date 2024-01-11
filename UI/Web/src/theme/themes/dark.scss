@@ -285,13 +285,13 @@ nav, .navbar {
 }
 
 h2 {
-    font-size: 52px;
+    font-size: calc(16px + 3vmin);
     font-weight: bold;
 }
 
 h6 {
     font-weight: bold;
-    font-size: 20px;
+    font-size: calc(14px + 0.2vmin);
 }
 
 app-user-login h2 {
@@ -300,7 +300,7 @@ app-user-login h2 {
 
 .publication {
     font-weight: bold;
-    font-size: 12px;
+    font-size: calc(10px + 0.2vmin);
 }
 
 
