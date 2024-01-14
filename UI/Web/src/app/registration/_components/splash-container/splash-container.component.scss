@@ -10,6 +10,11 @@
     background: 8rem no-repeat url('https://64.media.tumblr.com/f9aad75f592b0d3cf912c1b6de294c6c/37b95bb9c72f7615-6a/s1280x1920/4a3a9a21c92a7724963c80274fb21585395d3535.png'), #111111 !important;
     background-position: bottom left calc(50% - -25vw) !important;
     background-size: min(720px, 40%);
+    @media only screen and (max-width: 768px) {
+        background: 8rem no-repeat url('https://walfiegif.files.wordpress.com/2023/07/out-transparent-8.gif?w=371&h=336'), #111111 !important;
+        background-position: bottom -2rem center !important;
+        background-size: 25vh !important;
+    }
 
 /*
     &::before {
