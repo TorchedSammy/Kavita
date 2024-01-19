@@ -9,7 +9,7 @@
     z-index: 999;
 
     &.closed {
-        width: 0px;
+        //width: 0px;
         overflow-x: hidden;
         overflow-y: auto;
     }
@@ -82,7 +82,7 @@
     }
 
     &.closed {
-        width: 0px;
+        //width: 0px;
         overflow-x: hidden;
         overflow-y: auto;
         background-color: var(--side-nav-closed-bg-color);
