@@ -1,6 +1,6 @@
 <ng-container *transloco="let t; read: 'read-more'">
   <div>
-    <p [innerHTML]="currentText | safeHtml" [ngClass]="{'blur-text': blur && isCollapsed}" class="{{ isCollapsed ? 'collapsed' : 'not-collapased'}}"></p>
+    <p [innerHTML]="currentText | safeHtml" [ngClass]="{'blur-text': blur && isCollapsed}" class="{{ text && text.length > maxLength && isCollapsed ? 'collapsed' : 'not-collapased'}}"></p>
     <a [class.hidden]="hideToggle" *ngIf="text && text.length > maxLength && showToggle" class="d-flex justify-content-center align-items-center hidden read-more-link" (click)="toggleView()">
       &nbsp;<i aria-hidden="true" class="fa" [ngClass]="{'fa-caret-down': isCollapsed, 'fa-caret-up': !isCollapsed}"></i>&nbsp;{{isCollapsed ? t('read-more') : t('read-less')}}
     </a>
