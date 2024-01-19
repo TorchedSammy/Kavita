@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using API.Constants;
 using API.Data;
-using API.DTOs.Account;
 using API.DTOs.License;
 using API.Entities.Enums;
 using API.Extensions;
@@ -20,7 +19,8 @@ public class LicenseController(
     IUnitOfWork unitOfWork,
     ILogger<LicenseController> logger,
     ILicenseService licenseService,
-    ILocalizationService localizationService)
+    ILocalizationService localizationService,
+    ITaskScheduler taskScheduler)
     : BaseApiController
 {
     /// <summary>
@@ -57,6 +57,7 @@ public class LicenseController(
         setting.Value = null;
         unitOfWork.SettingsRepository.Update(setting);
         await unitOfWork.CommitAsync();
+        await taskScheduler.ScheduleKavitaPlusTasks();
         return Ok();
     }
 
@@ -82,6 +83,7 @@ public class LicenseController(
         try
         {
             await licenseService.AddLicense(dto.License.Trim(), dto.Email.Trim(), dto.DiscordId);
+            await taskScheduler.ScheduleKavitaPlusTasks();
         }
         catch (Exception ex)
         {

@@ -81,6 +81,19 @@ enum FragmentID {
 })
 export class UserPreferencesComponent implements OnInit, OnDestroy {
 
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly accountService = inject(AccountService);
+  private readonly toastr = inject(ToastrService);
+  private readonly bookService = inject(BookService);
+  private readonly titleService = inject(Title);
+  private readonly route = inject(ActivatedRoute);
+  private readonly settingsService = inject(SettingsService);
+  private readonly router = inject(Router);
+  private readonly cdRef = inject(ChangeDetectorRef);
+  private readonly localizationService = inject(LocalizationService);
+  protected readonly AccordionPanelID = AccordionPanelID;
+  protected readonly FragmentID = FragmentID;
+
   readingDirectionsTranslated = readingDirections.map(this.translatePrefOptions);
   scalingOptionsTranslated = scalingOptions.map(this.translatePrefOptions);
   pageSplitOptionsTranslated = pageSplitOptions.map(this.translatePrefOptions);
@@ -115,19 +128,9 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
   opdsEnabled: boolean = false;
   opdsUrl: string = '';
   makeUrl: (val: string) => string = (val: string) => { return this.opdsUrl; };
+  hasActiveLicense = false;
 
-  private readonly destroyRef = inject(DestroyRef);
-  private readonly accountService = inject(AccountService);
-  private readonly toastr = inject(ToastrService);
-  private readonly bookService = inject(BookService);
-  private readonly titleService = inject(Title);
-  private readonly route = inject(ActivatedRoute);
-  private readonly settingsService = inject(SettingsService);
-  private readonly router = inject(Router);
-  private readonly cdRef = inject(ChangeDetectorRef);
-  private readonly localizationService = inject(LocalizationService);
-  protected readonly AccordionPanelID = AccordionPanelID;
-  protected readonly FragmentID = FragmentID;
+
 
 
   constructor() {
@@ -144,14 +147,18 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
       this.cdRef.markForCheck();
     });
 
-    this.accountService.hasValidLicense().subscribe(res => {
+
+
+    this.accountService.hasValidLicense$.pipe(take(1), takeUntilDestroyed(this.destroyRef)).subscribe(res => {
       if (res) {
         this.tabs.push({title: 'scrobbling-tab', fragment: FragmentID.Scrobbling});
+        this.hasActiveLicense = true;
         this.cdRef.markForCheck();
       }
 
       this.route.fragment.subscribe(frag => {
         const tab = this.tabs.filter(item => item.fragment === frag);
+        console.log('tab: ', tab);
         if (tab.length > 0) {
           this.active = tab[0];
         } else {
@@ -159,7 +166,7 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
         }
         this.cdRef.markForCheck();
       });
-    })
+    });
 
 
     this.settingsService.getOpdsEnabled().subscribe(res => {

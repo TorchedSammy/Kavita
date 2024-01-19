@@ -11,7 +11,7 @@
   </app-metadata-detail-titleless>
 
 
-  <app-metadata-detail-titleless [tags]="['']" [libraryId]="series.libraryId" heading="Ratings">
+  <app-metadata-detail-titleless [tags]="['']" [libraryId]="series.libraryId" [heading]="t('rating-title')">
     <ng-template #itemTemplate let-item>
       <app-external-rating [seriesId]="series.id" [userRating]="series.userRating" [hasUserRated]="series.hasUserRated"
         [libraryType]="libraryType"></app-external-rating>
