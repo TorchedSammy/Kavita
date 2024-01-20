@@ -121,12 +121,6 @@
               <span><i class="fa fa-pen" aria-hidden="true"></i></span>
             </button>
           </div>
-          <div class="col-auto ms-2 d-none d-md-block">
-            <div class="card-actions">
-              <app-card-actionables (actionHandler)="performAction($event)" [actions]="seriesActions"
-                [labelBy]="series.name" iconClass="fa-ellipsis-h" btnClass="btn-secondary btn-lg"></app-card-actionables>
-            </div>
-          </div>
 
           <div class="col-auto ms-2 d-none d-md-block" *ngIf="isAdmin || hasDownloadingRole">
             @if (download$ | async; as download) {
@@ -144,6 +138,12 @@
                 <i class="fa fa-arrow-alt-circle-down" aria-hidden="true"></i>
               </button>
             }
+          </div>
+          <div class="col-auto ms-2 d-none d-md-block">
+            <div class="card-actions">
+              <app-card-actionables (actionHandler)="performAction($event)" [actions]="seriesActions"
+                [labelBy]="series.name" iconClass="fa-ellipsis-h" btnClass="btn-secondary btn-lg"></app-card-actionables>
+            </div>
           </div>
         </div>
 
