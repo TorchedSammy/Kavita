@@ -4,6 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600&display=swap');
 
 :root, :root .default {
+    --background: #16161a;
+
     --input-bg-color: #3d414a;
     --bs-primary-rgb: 158, 139, 255;
     --bs-secondary-rgb: 178, 178, 178;
@@ -14,23 +16,20 @@
     --primary-color-darker-shade: #9e8bff;
     --primary-color-darkest-shade: #9e8bff;
     --error-color: #BD362F;
-    --bs-body-bg: #000000;
+    --bs-body-bg: var(--background);
     --body-text-color: #efefef;
     --btn-icon-filter: invert(1) grayscale(100%) brightness(200%);
     --primary-color-scrollbar: var(--primary-color);
     --text-muted-color: lightgrey;
 
-    /* New Color scheme */
-    --secondary-color: #212328;
-
     /* Meta and Globals */
-    --theme-color: #000000;
+    --theme-color: var(--background);
     --color-scheme: dark;
     --tile-color: var(--primary-color);
 
 
     /* Navbar */
-    --navbar-bg-color: rgba(0, 0, 0, 0.35);
+    --navbar-bg-color: var(--background);
     --navbar-text-color: white;
     --navbar-fa-icon-color: white;
     --navbar-btn-hover-outline-color: rgba(255, 255, 255, 1);
@@ -72,14 +71,14 @@
     --nav-tab-border-hover-color: transparent;
     --nav-tab-hover-text-color: var(--body-text-color);
     --nav-tab-hover-bg-color: transparent;
-    --nav-tab-border-top: rgba(44, 118, 88, 0.7);
-    --nav-tab-border-left: rgba(44, 118, 88, 0.7);
-    --nav-tab-border-bottom: rgba(44, 118, 88, 0.7);
-    --nav-tab-border-right: rgba(44, 118, 88, 0.7);
-    --nav-tab-hover-border-top: rgba(44, 118, 88, 0.7);
-    --nav-tab-hover-border-left: rgba(44, 118, 88, 0.7);
+    --nav-tab-border-top: var(--primary-color);
+    --nav-tab-border-left: var(--primary-color);
+    --nav-tab-border-bottom: var(--primary-color);
+    --nav-tab-border-right: var(--primary-color);
+    --nav-tab-hover-border-top: var(--primary-color);
+    --nav-tab-hover-border-left: var(--primary-color);
     --nav-tab-hover-border-bottom: var(--bs-body-bg);
-    --nav-tab-hover-border-right: rgba(44, 118, 88, 0.7);
+    --nav-tab-hover-border-right: var(--primary-color);
     --nav-tab-active-hover-bg-color: var(--primary-color);
     --nav-link-bg-color: var(--primary-color);
     --nav-link-active-text-color: white;
@@ -280,7 +279,7 @@ label {
 }
 
 nav, .navbar {
-    backdrop-filter: blur(32px);
+    /*backdrop-filter: blur(32px);*/
 }
 
 .container-fluid > div {
