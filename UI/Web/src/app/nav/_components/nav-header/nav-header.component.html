@@ -1,5 +1,5 @@
 <ng-container *transloco="let t; read: 'nav-header'">
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top" *ngIf="navService?.navbarVisible$ | async">
+  <nav class="navbar border-bottom navbar-expand-md navbar-dark fixed-top" *ngIf="navService?.navbarVisible$ | async">
     <div class="container-fluid">
       <a class="visually-hidden-focusable focus-visible" href="javascript:void(0);" (click)="moveFocus()">{{t('skip-alt')}}</a>
       <a class="side-nav-toggle" *ngIf="navService?.sideNavVisibility$ | async" (click)="hideSideNav()"><i class="fas fa-bars"></i></a>
