@@ -17,6 +17,7 @@ import {FilterCombination} from "../_models/metadata/v2/filter-combination";
 import {SeriesFilterV2} from "../_models/metadata/v2/series-filter-v2";
 import {FilterStatement} from "../_models/metadata/v2/filter-statement";
 import {SeriesDetailPlus} from "../_models/series-detail/series-detail-plus";
+import {LibraryType} from "../_models/library/library";
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +29,12 @@ export class MetadataService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getSeriesMetadataFromPlus(seriesId: number) {
-    return this.httpClient.get<SeriesDetailPlus | null>(this.baseUrl + 'metadata/series-detail-plus?seriesId=' + seriesId);
+  getSeriesMetadataFromPlus(seriesId: number, libraryType: LibraryType) {
+    return this.httpClient.get<SeriesDetailPlus | null>(this.baseUrl + 'metadata/series-detail-plus?seriesId=' + seriesId + '&libraryType=' + libraryType);
+  }
+
+  forceRefreshFromPlus(seriesId: number) {
+    return this.httpClient.post(this.baseUrl + 'metadata/force-refresh?seriesId=' + seriesId, {});
   }
 
   getAllAgeRatings(libraries?: Array<number>) {

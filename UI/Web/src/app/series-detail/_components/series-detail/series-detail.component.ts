@@ -4,7 +4,8 @@ import {
   DOCUMENT,
   NgClass,
   NgFor,
-  NgIf, NgOptimizedImage,
+  NgIf,
+  NgOptimizedImage,
   NgStyle,
   NgSwitch,
   NgSwitchCase,
@@ -44,10 +45,13 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import {ToastrService} from 'ngx-toastr';
 import {catchError, forkJoin, Observable, of} from 'rxjs';
-import {filter, map, take} from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
 import {BulkSelectionService} from 'src/app/cards/bulk-selection.service';
 import {CardDetailDrawerComponent} from 'src/app/cards/card-detail-drawer/card-detail-drawer.component';
-import {EditSeriesModalComponent} from 'src/app/cards/_modals/edit-series-modal/edit-series-modal.component';
+import {
+  EditSeriesModalCloseResult,
+  EditSeriesModalComponent
+} from 'src/app/cards/_modals/edit-series-modal/edit-series-modal.component';
 import {TagBadgeCursor} from 'src/app/shared/tag-badge/tag-badge.component';
 import {DownloadEvent, DownloadService} from 'src/app/shared/_services/download.service';
 import {KEY_CODES, UtilityService} from 'src/app/shared/_services/utility.service';
@@ -63,6 +67,7 @@ import {RelationKind} from 'src/app/_models/series-detail/relation-kind';
 import {SeriesMetadata} from 'src/app/_models/metadata/series-metadata';
 import {User} from 'src/app/_models/user';
 import {Volume} from 'src/app/_models/volume';
+import {LooseLeafOrSpecialNumber} from 'src/app/_models/chapter';
 import {AccountService} from 'src/app/_services/account.service';
 import {Action, ActionFactoryService, ActionItem} from 'src/app/_services/action-factory.service';
 import {ActionService} from 'src/app/_services/action.service';
@@ -75,7 +80,11 @@ import {ReaderService} from 'src/app/_services/reader.service';
 import {ReadingListService} from 'src/app/_services/reading-list.service';
 import {ScrollService} from 'src/app/_services/scroll.service';
 import {SeriesService} from 'src/app/_services/series.service';
-import {ReviewSeriesModalComponent} from '../../../_single-module/review-series-modal/review-series-modal.component';
+import {
+  ReviewSeriesModalCloseAction,
+  ReviewSeriesModalCloseEvent,
+  ReviewSeriesModalComponent
+} from '../../../_single-module/review-series-modal/review-series-modal.component';
 import {PageLayoutMode} from 'src/app/_models/page-layout-mode';
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {UserReview} from "../../../_single-module/review-card/user-review";
@@ -108,6 +117,7 @@ import {NextExpectedCardComponent} from "../../../cards/next-expected-card/next-
 import {PublicationStatusPipe} from "../../../_pipes/publication-status.pipe";
 import {ProviderImagePipe} from "../../../_pipes/provider-image.pipe";
 import {MetadataService} from "../../../_services/metadata.service";
+import {Rating} from "../../../_models/rating";
 
 interface RelatedSeriesPair {
   series: Series;
@@ -129,15 +139,19 @@ interface StoryLineItem {
   isChapter: boolean;
 }
 
-const KavitaPlusSupportedLibraryTypes = [LibraryType.Manga, LibraryType.Book];
-
 @Component({
     selector: 'app-series-detail',
     templateUrl: './series-detail.component.html',
     styleUrls: ['./series-detail.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-  imports: [PublicationStatusPipe, NgIf, SideNavCompanionBarComponent, CardActionablesComponent, ReactiveFormsModule, NgStyle, TagBadgeComponent, ImageComponent, NgbTooltip, NgbProgressbar, NgbDropdown, NgbDropdownToggle, NgbDropdownMenu, NgbDropdownItem, SeriesMetadataDetailComponent, CarouselReelComponent, ReviewCardComponent, BulkOperationsComponent, NgbNav, NgbNavItem, NgbNavLink, NgbNavContent, VirtualScrollerModule, NgFor, CardItemComponent, ListItemComponent, EntityTitleComponent, SeriesCardComponent, ExternalSeriesCardComponent, ExternalListItemComponent, NgbNavOutlet, LoadingComponent, DecimalPipe, TranslocoDirective, NgTemplateOutlet, NgSwitch, NgSwitchCase, NextExpectedCardComponent, NgClass, NgOptimizedImage, ProviderImagePipe, AsyncPipe]
+  imports: [PublicationStatusPipe, NgIf, SideNavCompanionBarComponent, CardActionablesComponent, ReactiveFormsModule, NgStyle,
+    TagBadgeComponent, ImageComponent, NgbTooltip, NgbProgressbar, NgbDropdown, NgbDropdownToggle, NgbDropdownMenu,
+    NgbDropdownItem, SeriesMetadataDetailComponent, CarouselReelComponent, ReviewCardComponent, BulkOperationsComponent,
+    NgbNav, NgbNavItem, NgbNavLink, NgbNavContent, VirtualScrollerModule, NgFor, CardItemComponent, ListItemComponent,
+    EntityTitleComponent, SeriesCardComponent, ExternalSeriesCardComponent, ExternalListItemComponent, NgbNavOutlet,
+    LoadingComponent, DecimalPipe, TranslocoDirective, NgTemplateOutlet, NgSwitch, NgSwitchCase, NextExpectedCardComponent,
+    NgClass, NgOptimizedImage, ProviderImagePipe, AsyncPipe]
 })
 export class SeriesDetailComponent implements OnInit, AfterContentChecked {
 
@@ -171,6 +185,7 @@ export class SeriesDetailComponent implements OnInit, AfterContentChecked {
   protected readonly PageLayoutMode = PageLayoutMode;
   protected readonly TabID = TabID;
   protected readonly TagBadgeCursor = TagBadgeCursor;
+  protected readonly LooseLeafOrSpecialNumber = LooseLeafOrSpecialNumber;
 
   @ViewChild('scrollingBlock') scrollingBlock: ElementRef<HTMLDivElement> | undefined;
   @ViewChild('companionBar') companionBar: ElementRef<HTMLDivElement> | undefined;
@@ -189,6 +204,7 @@ export class SeriesDetailComponent implements OnInit, AfterContentChecked {
   isAdmin = false;
   hasDownloadingRole = false;
   isLoading = true;
+  isLoadingExtra = false;
   showBook = true;
 
   currentlyReadingChapter: Chapter | undefined = undefined;
@@ -204,6 +220,7 @@ export class SeriesDetailComponent implements OnInit, AfterContentChecked {
   activeTabId = TabID.Storyline;
 
   reviews: Array<UserReview> = [];
+  ratings: Array<Rating> = [];
   libraryType: LibraryType = LibraryType.Manga;
   seriesMetadata: SeriesMetadata | null = null;
   readingLists: Array<ReadingList> = [];
@@ -287,7 +304,7 @@ export class SeriesDetailComponent implements OnInit, AfterContentChecked {
     if (this.activeTabId === TabID.Chapters) chapterArray = this.chapters;
 
     // We must augment chapter indices as Bulk Selection assumes all on one page, but Storyline has mixed
-    const chapterIndexModifier = this.activeTabId === TabID.Storyline ? this.volumes.length + 1 : 0;
+    const chapterIndexModifier = this.activeTabId === TabID.Storyline ? this.volumes.length : 0;
     const selectedChapterIds = chapterArray.filter((_chapter, index: number) => {
       const mappedIndex = index + chapterIndexModifier;
       return selectedChapterIndexes.includes(mappedIndex + '');
@@ -321,6 +338,21 @@ export class SeriesDetailComponent implements OnInit, AfterContentChecked {
     }
   }
 
+  get ShowStorylineTab() {
+    return (this.libraryType !== LibraryType.Book && this.libraryType !== LibraryType.LightNovel) && (this.volumes.length > 0 || this.chapters.length > 0);
+  }
+
+  get ShowVolumeTab() {
+    return this.volumes.length > 0;
+  }
+  get ShowChaptersTab() {
+    return this.chapters.length > 0;
+  }
+
+  get UseBookLogic() {
+    return this.libraryType === LibraryType.Book || this.libraryType === LibraryType.LightNovel;
+  }
+
   get ScrollingBlockHeight() {
     if (this.scrollingBlock === undefined) return 'calc(var(--vh)*100)';
     const navbar = this.document.querySelector('.navbar') as HTMLElement;
@@ -344,9 +376,9 @@ export class SeriesDetailComponent implements OnInit, AfterContentChecked {
       }
 
       if (this.currentlyReadingChapter.number === "0") {
-        return 'Vol ' + vol[0].number;
+        return 'Vol ' + vol[0].minNumber;
       }
-      return 'Vol ' + vol[0].number + ' Ch ' + this.currentlyReadingChapter.number;
+      return 'Vol ' + vol[0].minNumber + ' Ch ' + this.currentlyReadingChapter.number;
     }
 
     return this.currentlyReadingChapter.title;
@@ -586,9 +618,6 @@ export class SeriesDetailComponent implements OnInit, AfterContentChecked {
     });
     this.setContinuePoint();
 
-    if (KavitaPlusSupportedLibraryTypes.includes(this.libraryType) && loadExternal) {
-      this.loadPlusMetadata(this.seriesId);
-    }
 
     forkJoin({
       libType: this.libraryService.getLibraryType(this.libraryId),
@@ -596,6 +625,17 @@ export class SeriesDetailComponent implements OnInit, AfterContentChecked {
     }).subscribe(results => {
       this.libraryType = results.libType;
       this.series = results.series;
+
+      if (loadExternal) {
+        this.loadPlusMetadata(this.seriesId, this.libraryType);
+      }
+
+      if (this.libraryType === LibraryType.LightNovel) {
+        this.renderMode = PageLayoutMode.List;
+        this.pageExtrasGroup.get('renderMode')?.setValue(this.renderMode);
+        this.cdRef.markForCheck();
+      }
+
 
       this.titleService.setTitle('Kavita - ' + this.series.name + ' Details');
 
@@ -677,12 +717,13 @@ export class SeriesDetailComponent implements OnInit, AfterContentChecked {
    */
   updateSelectedTab() {
     // Book libraries only have Volumes or Specials enabled
-    if (this.libraryType === LibraryType.Book) {
+    if (this.libraryType === LibraryType.Book || this.libraryType === LibraryType.LightNovel) {
       if (this.volumes.length === 0) {
         this.activeTabId = TabID.Specials;
       } else {
         this.activeTabId = TabID.Volumes;
       }
+      this.cdRef.markForCheck();
       return;
     }
 
@@ -691,33 +732,35 @@ export class SeriesDetailComponent implements OnInit, AfterContentChecked {
     } else {
       this.activeTabId = TabID.Storyline;
     }
+    this.cdRef.markForCheck();
   }
 
 
-  loadPlusMetadata(seriesId: number) {
-    this.metadataService.getSeriesMetadataFromPlus(seriesId).subscribe(data => {
+  loadPlusMetadata(seriesId: number, libraryType: LibraryType) {
+    this.isLoadingExtra = true;
+    this.cdRef.markForCheck();
+    this.metadataService.getSeriesMetadataFromPlus(seriesId, libraryType).subscribe(data => {
+      this.isLoadingExtra = false;
+      this.cdRef.markForCheck();
       if (data === null) return;
 
       // Reviews
       this.reviews = [...data.reviews];
+      if (data.ratings) {
+        this.ratings = [...data.ratings];
+      }
+
 
       // Recommendations
-      data.recommendations.ownedSeries.map(r => {
-        this.seriesService.getMetadata(r.id).subscribe(m => r.summary = m.summary);
-      });
-      this.combinedRecs = [...data.recommendations.ownedSeries, ...data.recommendations.externalSeries];
+      if (data.recommendations) {
+        this.combinedRecs = [...data.recommendations.ownedSeries, ...data.recommendations.externalSeries];
+      }
+
       this.hasRecommendations = this.combinedRecs.length > 0;
 
       this.cdRef.markForCheck();
     });
   }
-  loadReviews() {
-    this.seriesService.getReviews(this.seriesId).subscribe(reviews => {
-      this.reviews = [...reviews];
-      this.cdRef.markForCheck();
-    });
-  }
-
 
   setContinuePoint() {
     this.readerService.hasSeriesProgress(this.seriesId).subscribe(hasProgress => {
@@ -824,10 +867,10 @@ export class SeriesDetailComponent implements OnInit, AfterContentChecked {
   openEditSeriesModal() {
     const modalRef = this.modalService.open(EditSeriesModalComponent, {  size: 'xl' });
     modalRef.componentInstance.series = this.series;
-    modalRef.closed.subscribe((closeResult: {success: boolean, series: Series, coverImageUpdate: boolean}) => {
+    modalRef.closed.subscribe((closeResult: EditSeriesModalCloseResult) => {
       if (closeResult.success) {
         window.scrollTo(0, 0);
-        this.loadSeries(this.seriesId);
+        this.loadSeries(this.seriesId, closeResult.updateExternal);
       }
 
       if (closeResult.coverImageUpdate) {
@@ -844,6 +887,7 @@ export class SeriesDetailComponent implements OnInit, AfterContentChecked {
     const userReview = this.getUserReview();
 
     const modalRef = this.modalService.open(ReviewSeriesModalComponent, { scrollable: true, size: 'lg' });
+    modalRef.componentInstance.series = this.series;
     if (userReview.length > 0) {
       modalRef.componentInstance.review = userReview[0];
     } else {
@@ -853,12 +897,36 @@ export class SeriesDetailComponent implements OnInit, AfterContentChecked {
         body: ''
       };
     }
-    modalRef.componentInstance.series = this.series;
-    modalRef.closed.subscribe((closeResult: {success: boolean}) => {
-      if (closeResult.success) {
-        this.loadReviews(); // TODO: Ensure reviews get updated here
-      }
+
+    modalRef.closed.subscribe((closeResult) => {
+      this.updateOrDeleteReview(closeResult);
     });
+
+  }
+
+  updateOrDeleteReview(closeResult: ReviewSeriesModalCloseEvent) {
+    if (closeResult.action === ReviewSeriesModalCloseAction.Close) return;
+
+    const index = this.reviews.findIndex(r => r.username === closeResult.review!.username);
+    if (closeResult.action === ReviewSeriesModalCloseAction.Edit) {
+      if (index === -1 ) {
+        // A new series was added:
+        this.reviews = [closeResult.review, ...this.reviews];
+        this.cdRef.markForCheck();
+        return;
+      }
+      // An edit occurred
+      this.reviews[index] = closeResult.review;
+      this.cdRef.markForCheck();
+      return;
+    }
+
+    if (closeResult.action === ReviewSeriesModalCloseAction.Delete) {
+      // An edit occurred
+      this.reviews = [...this.reviews.filter(r => r.username !== closeResult.review!.username)];
+      this.cdRef.markForCheck();
+      return;
+    }
   }
 
 

@@ -3,6 +3,24 @@
     <!--
 
     <app-side-nav-companion-bar *ngIf="series !== undefined" [hasExtras]="true" [extraDrawer]="extrasDrawer">
+      <ng-container title>
+        <h2 class="title text-break">
+          <app-card-actionables (actionHandler)="performAction($event)" [actions]="seriesActions" [labelBy]="series.name" iconClass="fa-ellipsis-v"></app-card-actionables>
+          <span>{{series.name}}
+            @if(isLoadingExtra || isLoading) {
+              <div class="spinner-border spinner-border-sm text-primary" role="status">
+                <span class="visually-hidden">loading...</span>
+              </div>
+            }
+          </span>
+        </h2>
+      </ng-container>
+      <ng-container subtitle *ngIf="series.localizedName !== series.name">
+        <h6 class="subtitle-with-actionables text-break" title="Localized Name">{{series.localizedName}}</h6>
+      </ng-container>
+
+
+
       <ng-template #extrasDrawer let-offcanvas>
         <div style="margin-top: 56px">
           <div class="offcanvas-header">
@@ -146,7 +164,7 @@
         @if (seriesMetadata) {
           <div class="mt-2">
             <app-series-metadata-detail [seriesMetadata]="seriesMetadata" [readingLists]="readingLists" [series]="series"
-                                        [libraryType]="libraryType"
+                                        [libraryType]="libraryType" [ratings]="ratings"
                                         [hasReadingProgress]="hasReadingProgress"></app-series-metadata-detail>
           </div>
         }
@@ -154,12 +172,12 @@
       </div>
 <!-- TODO: MOVE DOWN
 
-      <div class="row" [ngClass]="{'pt-3': !seriesMetadata || seriesMetadata?.summary?.length === 0}">
+      <div class="row" [ngClass]="{'pt-3': !seriesMetadata || seriesMetadata.summary.length === 0}">
         <app-carousel-reel [items]="reviews" [alwaysShow]="true" [title]="t('user-reviews-alt')"
           iconClasses="fa-solid fa-{{getUserReview().length > 0 ? 'pen' : 'plus'}}" [clickableTitle]="true"
           (sectionClick)="openReviewModal()">
           <ng-template #carouselItem let-item let-position="idx">
-            <app-review-card [review]="item"></app-review-card>
+            <app-review-card [review]="item" (refresh)="updateOrDeleteReview($event)"></app-review-card>
           </ng-template>
         </app-carousel-reel>
       </div>
@@ -206,8 +224,8 @@
           </ng-template>
         </li>
 
-        <li [ngbNavItem]="TabID.Volumes" *ngIf="volumes.length > 0">
-          <a ngbNavLink>{{libraryType === LibraryType.Book ? t('books-tab') : t('volumes-tab')}}</a>
+        <li [ngbNavItem]="TabID.Volumes" *ngIf="ShowVolumeTab">
+          <a ngbNavLink>{{UseBookLogic ? t('books-tab') : t('volumes-tab')}}</a>
           <ng-template ngbNavContent>
             <virtual-scroller #scroll [items]="volumes" [parentScroll]="scrollingBlock" [childHeight]="1">
               <ng-container *ngIf="renderMode === PageLayoutMode.Cards; else volumeListLayout">
@@ -232,7 +250,7 @@
           </ng-template>
         </li>
 
-        <li [ngbNavItem]="TabID.Chapters" *ngIf="chapters.length > 0">
+        <li [ngbNavItem]="TabID.Chapters" *ngIf="ShowChaptersTab">
           <a ngbNavLink>{{utilityService.formatChapterName(libraryType) + 's'}}</a>
           <ng-template ngbNavContent>
             <virtual-scroller #scroll [items]="chapters" [parentScroll]="scrollingBlock" [childHeight]="1">

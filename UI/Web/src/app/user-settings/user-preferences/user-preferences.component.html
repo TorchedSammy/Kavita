@@ -431,6 +431,7 @@
                               class="fa fa-info-circle ms-1" aria-hidden="true"
                               aria-describedby="settings-book-writing-style-help" placement="right"
                               [ngbTooltip]="bookWritingStyleToolTip" role="button" tabindex="0"></i>
+                            <label for="settings-book-writing-style" class="form-label me-1">{{t('writing-style-label')}}</label><i class="fa fa-info-circle ms-1" aria-hidden="true" aria-describedby="settings-book-writing-style-help" placement="right" [ngbTooltip]="bookWritingStyleToolTip" role="button" tabindex="0"></i>
                             <ng-template #bookWritingStyleToolTip>{{t('writing-style-tooltip')}}</ng-template>
                             <span class="visually-hidden" id="settings-book-writing-style-help">
                               <ng-container [ngTemplateOutlet]="bookWritingStyleToolTip"></ng-container>
