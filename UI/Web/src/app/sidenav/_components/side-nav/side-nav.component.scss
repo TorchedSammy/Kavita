@@ -9,7 +9,7 @@
     z-index: 999;
 
     &.closed {
-        //width: 0px;
+        width: 50px;
         overflow-x: hidden;
         overflow-y: auto;
     }
@@ -62,12 +62,12 @@
     padding-bottom: 10px;
     width: 190px;
     background-color: var(--side-nav-bg-color);
-    height: calc((var(--vh)*100) - 115px);
+    height: calc((var(--vh)*100) - 90px);
     position: fixed;
     margin: 0;
     left: 10px;
-    top: 73px;
-    border-radius: var(--side-nav-border-radius);
+    //top: 73px;
+    //border-radius: var(--side-nav-border-radius);
     transition: width var(--side-nav-openclose-transition), background-color var(--side-nav-bg-color-transition), border-color var(--side-nav-border-transition);
     overflow: auto;
     border: var(--side-nav-border);
@@ -82,7 +82,7 @@
     }
 
     &.closed {
-        //width: 0px;
+        width: 50px;
         overflow-x: hidden;
         overflow-y: auto;
         background-color: var(--side-nav-closed-bg-color);

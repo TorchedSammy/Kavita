@@ -74,10 +74,11 @@
 
         .active-highlight {
             background-color: var(--side-nav-item-active-color);
-            width: 5px;
-            height: 100%;
-            position: absolute;
+            width: 10px;
+            height: 10px;
+            //position: absolute;
             left: 0;
+            border-radius: 50%;
         }
 
         .side-nav-text, i {

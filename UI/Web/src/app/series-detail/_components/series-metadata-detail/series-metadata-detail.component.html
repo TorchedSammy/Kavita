@@ -173,14 +173,12 @@
 
   </div>
 
-    <div class="row g-0">
       <hr class="col mt-3" *ngIf="hasExtendedProperties" >
       <a [class.hidden]="hasExtendedProperties" *ngIf="hasExtendedProperties"
-         class="col col-md-auto align-self-end read-more-link" (click)="toggleView()">
+         class="col col-md-auto read-more-link" (click)="toggleView()">
         <i aria-hidden="true" class="fa fa-caret-{{isCollapsed ? 'down' : 'up'}} me-1" aria-controls="extended-series-metadata"></i>
         {{isCollapsed ? t('see-more') : t('see-less')}}
       </a>
-    </div>
 
   <app-series-info-cards [series]="series" [seriesMetadata]="seriesMetadata" (goTo)="handleGoTo($event)"
     [hasReadingProgress]="hasReadingProgress"></app-series-info-cards>

@@ -117,7 +117,7 @@
     --side-nav-mobile-box-shadow: 3px 0em 5px 10em rgb(0 0 0 / 50%);
     --side-nav-hover-text-color: white;
     --side-nav-hover-bg-color: black;
-    --side-nav-text-color: white;
+    --side-nav-color: white;
     --side-nav-border-radius: 5px;
     --side-nav-border: none;
     --side-nav-border-closed: none;
@@ -236,7 +236,6 @@
     --carousel-header-text-color: var(--body-text-color);
     --carousel-header-text-decoration: none;
     --carousel-hover-header-text-decoration: none;
-    --carousel-btn-color: var(--body-text-color);
 
     /** Drawer */
     --drawer-bg-color: #292929;
@@ -273,9 +272,6 @@
     --publication-ended: #7aaaff;
     --publication-hiatus: #ff9c6a;
     --publication-ongoing: #55b682;
-
-    /** Badge **/
-    --badge-text-color: var(--bs-badge-color);
 }
 
 /* Login */
@@ -283,6 +279,7 @@ label {
     font-family: 'League Spartan', sans-serif;
     font-size: 1rem;
 }
+
 .login h1 {
     font-weight: 600;
     font-size: 24px;
