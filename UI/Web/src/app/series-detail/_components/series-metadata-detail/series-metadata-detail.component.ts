@@ -86,7 +86,8 @@ export class SeriesMetadataDetailComponent implements OnChanges {
 
   constructor() {
     // If on desktop, we can just have all the data expanded by default:
-    this.isCollapsed = this.utilityService.getActiveBreakpoint() < Breakpoint.Desktop;
+    // actually NO BECAUSE THAT'S ANNOYING.
+    //this.isCollapsed = this.utilityService.getActiveBreakpoint() < Breakpoint.Desktop;
     this.cdRef.markForCheck();
   }
 

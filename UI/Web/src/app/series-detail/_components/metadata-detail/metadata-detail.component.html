@@ -1,8 +1,5 @@
-<div class="row g-0 mb-1" *ngIf="tags && tags.length > 0">
-  <div class="col-lg-3 col-md-4 col-sm-12">
+<div class="mt-3 mb-3" *ngIf="tags && tags.length > 0">
     <h5>{{heading}}</h5>
-  </div>
-  <div class="col-lg-9 col-md-8 col-sm-12">
     <app-badge-expander [items]="tags" [itemsTillExpander]="utilityService.getActiveBreakpoint() >= Breakpoint.Desktop ? 30 : 4">
       <ng-template #badgeExpanderItem let-item let-position="idx">
         <ng-container *ngIf="itemTemplate; else useTitle">
@@ -11,11 +8,10 @@
           </span>
         </ng-container>
         <ng-template #useTitle>
-          <app-tag-badge a11y-click="13,32" class="col-auto" (click)="goTo(queryParam, item.id)" [selectionMode]="TagBadgeCursor.Clickable">
+          <app-tag-badge a11y-click="13,32" class="col-auto" (click)="goTo(queryParam, item.id)" [selectionMode]="TagBadgeCursor.Clickable" style="">
             <ng-container [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{ $implicit: item, idx: position }"></ng-container>
           </app-tag-badge>
         </ng-template>
       </ng-template>
     </app-badge-expander>
-  </div>
 </div>

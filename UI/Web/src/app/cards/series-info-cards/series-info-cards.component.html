@@ -13,6 +13,7 @@
     -->
 
     <ng-container *ngIf="seriesMetadata">
+      <!--
       <ng-container *ngIf="seriesMetadata.ageRating">
         <div class="col-lg-1 col-md-4 col-sm-4 col-4 mb-2">
           <app-icon-and-title [label]="t('age-rating-title')" [clickable]="true" fontClasses="fas fa-eye" (click)="handleGoTo(FilterField.AgeRating, seriesMetadata.ageRating)" [title]="t('age-rating-title')">
@@ -21,7 +22,6 @@
         </div>
         <div class="vr d-none d-lg-block m-2"></div>
       </ng-container>
-
       <ng-container *ngIf="seriesMetadata.language !== null && seriesMetadata.language !== ''">
         <div class="col-lg-1 col-md-4 col-sm-4 col-4 mb-2">
           <app-icon-and-title [label]="t('language-title')" [clickable]="true" fontClasses="fas fa-language" (click)="handleGoTo(FilterField.Languages, seriesMetadata.language)" [title]="t('language-title')">
@@ -30,6 +30,7 @@
         </div>
         <div class="vr d-none d-lg-block m-2"></div>
       </ng-container>
+    -->
     </ng-container>
 
     <!--
@@ -79,6 +80,7 @@
         <div class="vr d-none d-lg-block m-2"></div>
       </ng-container>
     -->
+      <!--
 
       <ng-container *ngIf="series.latestReadDate && series.latestReadDate !== '' && (series.latestReadDate | date: 'shortDate') !== '1/1/01'">
         <div class="d-none d-md-block col-lg-1 col-md-4 col-sm-4 col-4 mb-2">
@@ -108,7 +110,6 @@
         </div>
         <div class="vr d-none d-lg-block m-2"></div>
       </ng-template>
-
       <ng-container *ngIf="series.format === MangaFormat.EPUB && series.wordCount > 0 || series.format !== MangaFormat.EPUB">
         <div class="col-lg-1 col-md-4 col-sm-4 col-4 mb-2">
           <app-icon-and-title [label]="t('read-time-title')" [clickable]="false" fontClasses="fa-regular fa-clock">
@@ -119,7 +120,7 @@
           </app-icon-and-title>
         </div>
       </ng-container>
-
+-->
       <ng-container *ngIf="hasReadingProgress && showReadingTimeLeft && readingTimeLeft && readingTimeLeft.avgHours !== 0">
         <div class="vr d-none d-lg-block m-2"></div>
         <div class="col-lg-1 col-md-4 col-sm-4 col-4 mb-2">
