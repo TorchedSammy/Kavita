@@ -100,6 +100,7 @@ import {BulkOperationsComponent} from '../../../cards/bulk-operations/bulk-opera
 import {ReviewCardComponent} from '../../../_single-module/review-card/review-card.component';
 import {CarouselReelComponent} from '../../../carousel/_components/carousel-reel/carousel-reel.component';
 import {SeriesMetadataDetailComponent} from '../series-metadata-detail/series-metadata-detail.component';
+import {SeriesMetadataDetailExtrasComponent} from '../series-metadata-detail-extras/series-metadata-detail-extras.component';
 import {ImageComponent} from '../../../shared/image/image.component';
 import {TagBadgeComponent} from '../../../shared/tag-badge/tag-badge.component';
 import {
@@ -145,7 +146,7 @@ interface StoryLineItem {
     styleUrls: ['./series-detail.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-  imports: [PublicationStatusPipe, NgIf, SideNavCompanionBarComponent, CardActionablesComponent, ReactiveFormsModule, NgStyle,
+  imports: [SeriesMetadataDetailExtrasComponent, PublicationStatusPipe, NgIf, SideNavCompanionBarComponent, CardActionablesComponent, ReactiveFormsModule, NgStyle,
     TagBadgeComponent, ImageComponent, NgbTooltip, NgbProgressbar, NgbDropdown, NgbDropdownToggle, NgbDropdownMenu,
     NgbDropdownItem, SeriesMetadataDetailComponent, CarouselReelComponent, ReviewCardComponent, BulkOperationsComponent,
     NgbNav, NgbNavItem, NgbNavLink, NgbNavContent, VirtualScrollerModule, NgFor, CardItemComponent, ListItemComponent,

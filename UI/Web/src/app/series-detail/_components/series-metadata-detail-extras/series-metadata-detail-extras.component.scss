@@ -1,0 +1,34 @@
+.favicon {
+  border-radius: 5px;
+}
+
+.tagsandpublishing {
+  display: flex;
+  gap: 1vmin;
+}
+
+.publication {
+  display: flex;
+  gap: 0.5vmax;
+  align-items: center;
+}
+
+.publication .dot[data-publication="cancelled"] {
+  color: var(--publication-cancelled);
+}
+
+.publication .dot[data-publication="completed"] {
+  color: var(--publication-completed);
+}
+
+.publication .dot[data-publication="ended"] {
+  color: var(--publication-ended);
+}
+
+.publication .dot[data-publication="hiatus"] {
+  color: var(--publication-hiatus);
+}
+
+.publication .dot[data-publication="ongoing"] {
+  color: var(--publication-ongoing);
+}
