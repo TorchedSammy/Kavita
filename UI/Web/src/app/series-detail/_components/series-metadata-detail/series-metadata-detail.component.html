@@ -2,7 +2,7 @@
   <div class="tagsandpublishing">
       <app-metadata-detail-titleless [tags]="seriesMetadata.tags.concat(seriesMetadata.genres)" [libraryId]="series.libraryId" [queryParam]="FilterField.Tags"
         [heading]="t('tags-title')">
-        <ng-template #titleTemplate let-item><span>{{item.title}}</span></ng-template>
+        <ng-template #titleTemplate let-item><span [attr.data-tag]="item.title.toLowerCase()">{{item.title}}</span></ng-template>
       </app-metadata-detail-titleless>
 
       <div class="publication">

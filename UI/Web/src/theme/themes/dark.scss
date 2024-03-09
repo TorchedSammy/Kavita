@@ -4,6 +4,10 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600&display=swap');
 
 :root, :root .default {
+    --color-red: #f25c5c;
+    --color-green: #55b682;
+    --color-blue: #7aaaff;
+    --color-yellow: #ff9c6a;
     --background: #16161a;
     --background-secondary: #212126;
 
@@ -267,11 +271,11 @@
     /** Rating Star Color **/
     --rating-star-color: var(--primary-color);
 
-    --publication-cancelled: #f25c5c;
-    --publication-completed: #7aaaff;
-    --publication-ended: #7aaaff;
-    --publication-hiatus: #ff9c6a;
-    --publication-ongoing: #55b682;
+    --publication-cancelled: var(--color-red);
+    --publication-completed: var(--color-blue);
+    --publication-ended: var(--color-blue);
+    --publication-hiatus: var(--color-yellow);
+    --publication-ongoing: var(--color-green);
 }
 
 /* Login */
@@ -331,5 +335,21 @@ app-read-more .collapsed {
 }
 
 .tagbadge span {
+    text-transform: capitalize;
     font-size: calc(10px + 0.2vmin);
+}
+
+/* Tags */
+/* Yellow ones (mid level spook) */
+.tagbadge:has(span[data-tag="suggestive"]) {
+    background-color: var(--color-yellow);
+}
+
+/* Red Tags (oh no poopies!!) */
+.tagbadge:has(span[data-tag="gore"]) {
+    background-color: var(--color-red);
+}
+
+.tagbadge:has(span[data-tag="sexual violence"]) {
+    background-color: var(--color-red);
 }
