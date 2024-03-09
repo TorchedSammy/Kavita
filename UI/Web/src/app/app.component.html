@@ -1,4 +1,4 @@
-<div [ngClass]="{'no-transitions' : (transitionState$ | async)}" class="mt-3">
+<div [ngClass]="{'no-transitions' : (transitionState$ | async)}">
     <app-nav-header></app-nav-header>
     <div [ngClass]="{'closed' : (navService.sideNavCollapsed$ | async), 'content-wrapper': navService.sideNavVisibility$ | async}">
         <a id="content"></a>
