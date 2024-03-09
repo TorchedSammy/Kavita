@@ -49,9 +49,11 @@
       </div>
       </div>-->
       <div class="image-container col-4 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 d-none d-sm-block mt-2">
+        <!--
         <div class="to-read-counter" *ngIf="unreadCount > 0 && unreadCount !== totalCount">
           <app-tag-badge [selectionMode]="TagBadgeCursor.NotAllowed" fillStyle="filled">{{unreadCount}}</app-tag-badge>
         </div>
+      -->
         <app-image height="100%" maxHeight="400px" objectFit="contain" background="none"
           [imageUrl]="seriesImage"></app-image>
         <ng-container
