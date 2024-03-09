@@ -1,15 +1,34 @@
 <ng-container *transloco="let t; read: 'series-metadata-detail'">
+  <div class="tagsandpublishing">
+      <app-metadata-detail-titleless [tags]="seriesMetadata.tags.concat(seriesMetadata.genres)" [libraryId]="series.libraryId" [queryParam]="FilterField.Tags"
+        [heading]="t('tags-title')">
+        <ng-template #titleTemplate let-item><span>{{item.title}}</span></ng-template>
+      </app-metadata-detail-titleless>
+
+      <div class="publication">
+        <ng-container *transloco="let t; read: 'series-info-cards'">
+          <ng-container *ngIf="seriesMetadata.publicationStatus | publicationStatus as pubStatus">
+              <i class="fa-solid fa-circle dot" [attr.data-publication]="pubStatus.toLowerCase()"></i>
+              <span>
+                {{ upper(t('publication-status-title')) }}:
+                <span *ngIf="seriesMetadata.releaseYear > 0">{{ seriesMetadata.releaseYear.toString().toLocaleUpperCase() }}, </span>
+                {{ pubStatus.toLocaleUpperCase() }}
+              </span>
+          </ng-container>
+        </ng-container>
+      </div>
+  </div>
+  <!--
+  <app-metadata-detail-titleless [tags]="seriesMetadata.genres" [libraryId]="series.libraryId" [queryParam]="FilterField.Genres"
+    [heading]="t('genres-title')">
+    <ng-template #titleTemplate let-item>{{item.title}}</ng-template>
+  </app-metadata-detail-titleless>
+-->
+
   <div class="row g-0 mt-2 mb-2">
     <app-read-more [text]="seriesSummary"
       [maxLength]="utilityService.getActiveBreakpoint() >= Breakpoint.Desktop ? 1000 : 250"></app-read-more>
   </div>
-
-
-  <app-metadata-detail-titleless [tags]="seriesMetadata.tags" [libraryId]="series.libraryId" [queryParam]="FilterField.Tags"
-    [heading]="t('tags-title')">
-    <ng-template #titleTemplate let-item>{{item.title}}</ng-template>
-  </app-metadata-detail-titleless>
-
 
   <app-metadata-detail-titleless [tags]="['']" [libraryId]="series.libraryId" [heading]="t('rating-title')">
     <ng-template #itemTemplate let-item>
@@ -17,7 +36,6 @@
         [libraryType]="libraryType"></app-external-rating>
     </ng-template>
   </app-metadata-detail-titleless>
-
 
   <ng-container *ngIf="WebLinks as links">
     <app-metadata-detail [tags]="links" [libraryId]="series.libraryId" [heading]="t('links-title')">
@@ -29,12 +47,6 @@
       </ng-template>
     </app-metadata-detail>
   </ng-container>
-
-
-  <app-metadata-detail [tags]="seriesMetadata.genres" [libraryId]="series.libraryId" [queryParam]="FilterField.Genres"
-    [heading]="t('genres-title')">
-    <ng-template #titleTemplate let-item>{{item.title}}</ng-template>
-  </app-metadata-detail>
 
   <app-metadata-detail [tags]="seriesMetadata.collectionTags" [libraryId]="series.libraryId"
     [heading]="t('collections-title')">

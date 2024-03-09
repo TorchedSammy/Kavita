@@ -177,8 +177,15 @@
               <i class="fa-solid fa-user-circle align-self-center phone-hidden d-xs-inline-block d-sm-inline-block d-md-none"></i>
               <span class="d-none d-xs-none d-sm-none d-md-inline-block">{{user.username | sentenceCase}}</span>
             </button>
-            <div ngbDropdownMenu>
-              <a class="xs-only" ngbDropdownItem routerLink="/admin/dashboard" *ngIf="user.roles.includes('Admin')">{{t('server-settings')}}</a>
+            <div ngbDropdownMenu class="p-3">
+              <div class="d-flex justify-content-center mt-3 mb-3">
+                <p class="fw-bold fs-4">{{user.username | sentenceCase}}</p>
+
+                <span class="badge text-bg-secondary">{{ accountService.hasAdminRole(user) ? 'Admin' : 'User'}}</span>
+              </div>
+              <div>
+                <a ngbDropdownItem routerLink="/bookmarks/"><i class="fa fa-bookmark" aria-hidden="true"></i> Bookmarks</a>
+              </div>
               <a ngbDropdownItem routerLink="/preferences/">{{t('settings')}}</a>
               <a ngbDropdownItem routerLink="/all-filters/">{{t('all-filters')}}</a>
               <a ngbDropdownItem href="https://wiki.kavitareader.com" rel="noopener noreferrer" target="_blank">{{t('help')}}</a>

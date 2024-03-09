@@ -44,6 +44,10 @@
 
   <div [ngStyle]="{'height': ScrollingBlockHeight}" class="main-container container-fluid pt-2" *ngIf="series !== undefined" #scrollingBlock>
     <div class="row mb-0 mb-xl-3 info-container">
+      <!--<div class="row">
+      <div class="col container" style="height: 280px; background-image: url({{ seriesImage }}); backdrop-filter: blur(5px);">
+      </div>
+      </div>-->
       <div class="image-container col-4 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2 d-none d-sm-block mt-2">
         <div class="to-read-counter" *ngIf="unreadCount > 0 && unreadCount !== totalCount">
           <app-tag-badge [selectionMode]="TagBadgeCursor.NotAllowed" fillStyle="filled">{{unreadCount}}</app-tag-badge>
@@ -72,16 +76,6 @@
             <ng-container subtitle *ngIf="series.localizedName !== series.name">
               <h6 class="subtitle text-break" title="Localized Name">{{series.localizedName}}</h6>
             </ng-container>
-            <div *ngIf="seriesMetadata" class="mt-2">
-            <ng-container *transloco="let t; read: 'series-info-cards'">
-              <ng-container *ngIf="seriesMetadata.publicationStatus | publicationStatus as pubStatus">
-                <p class="publication">{{ upper(t('publication-status-title')) }}:
-                  <span *ngIf="seriesMetadata.releaseYear > 0">{{ upper(seriesMetadata.releaseYear.toString()) }}, </span>
-                  {{ upper(pubStatus) }}
-                </p>
-              </ng-container>
-            </ng-container>
-            </div>
           </div>
           <div class="col-auto">
             <div class="btn-group">
@@ -111,7 +105,7 @@
             <button class="btn btn-secondary btn-lg" (click)="toggleWantToRead()"
               title="{{isWantToRead ? t('remove-from-want-to-read') : t('add-to-want-to-read')}}">
               <span>
-                <i class="{{isWantToRead ? 'fa-solid' : 'fa-regular'}} fa-star" aria-hidden="true"></i>
+                <i class="{{isWantToRead ? 'fa-solid' : 'fa-regular'}} fa-bookmark" aria-hidden="true"></i>
               </span>
             </button>
           </div>

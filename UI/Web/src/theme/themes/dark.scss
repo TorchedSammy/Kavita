@@ -5,6 +5,7 @@
 
 :root, :root .default {
     --background: #16161a;
+    --background-secondary: #212126;
 
     --input-bg-color: #3d414a;
     --bs-primary-rgb: 158, 139, 255;
@@ -104,9 +105,9 @@
     --tagbadge-border-color: rgba(239, 239, 239, 0.125);
     --tagbadge-text-color: var(--body-text-color);
     --tagbadge-bg-color: var(--nav-tab-hover-bg-color);
-    --tagbadge-filled-border-color: rgba(239, 239, 239, 0.125);
+    --tagbadge-filled-border-color: var(--background-secondary);
     --tagbadge-filled-text-color: var(--body-text-color);
-    --tagbadge-filled-bg-color: var(--primary-color);
+    --tagbadge-filled-bg-color: var(--background-secondary);
 
     /* Side Nav */
     --side-nav-bg-color: rgba(0,0,0,0.2);
@@ -265,6 +266,12 @@
 
     /** Rating Star Color **/
     --rating-star-color: var(--primary-color);
+
+    --publication-cancelled: #f25c5c;
+    --publication-completed: #7aaaff;
+    --publication-ended: #7aaaff;
+    --publication-hiatus: #ff9c6a;
+    --publication-ongoing: #55b682;
 }
 
 /* Login */
@@ -315,4 +322,13 @@ app-card-item .badge {
 app-read-more .collapsed {
     mask-image: linear-gradient(black 0%, black 60%, transparent 100%);
     margin-bottom: 0;
+}
+
+.tagbadge {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+.tagbadge span {
+    font-size: calc(10px + 0.2vmin);
 }
