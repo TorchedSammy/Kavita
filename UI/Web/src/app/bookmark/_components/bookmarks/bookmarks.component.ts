@@ -89,7 +89,7 @@ export class BookmarksComponent implements OnInit {
         this.cdRef.markForCheck();
       });
 
-      this.titleService.setTitle('Kavita - ' + translate('bookmarks.title'));
+      this.titleService.setTitle('Lumiverse - ' + translate('bookmarks.title'));
     }
 
   ngOnInit(): void {

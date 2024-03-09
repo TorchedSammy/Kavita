@@ -116,7 +116,7 @@ export class AllSeriesComponent implements OnInit {
     this.filterUtilityService.filterPresetsFromUrl(this.route.snapshot).subscribe(filter => {
       this.filter = filter;
       this.title = this.route.snapshot.queryParamMap.get('title') || this.filter.name || this.title;
-      this.titleService.setTitle('Kavita - ' + this.title);
+      this.titleService.setTitle('Lumiverse - ' + this.title);
       this.filterActiveCheck = this.filterUtilityService.createSeriesV2Filter();
       this.filterActiveCheck!.statements.push(this.filterUtilityService.createSeriesV2DefaultStatement());
       this.filterSettings.presetsV2 =  this.filter;

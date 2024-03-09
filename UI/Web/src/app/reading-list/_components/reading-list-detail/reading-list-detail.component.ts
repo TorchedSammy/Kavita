@@ -94,7 +94,7 @@ export class ReadingListDetailComponent implements OnInit {
       const libraries = results[0];
       const readingList = results[1];
 
-      this.titleService.setTitle('Kavita - ' + readingList.title);
+      this.titleService.setTitle('Lumiverse - ' + readingList.title);
 
       libraries.forEach(lib => {
         this.libraryTypes[lib.id] = lib.type;

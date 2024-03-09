@@ -147,7 +147,7 @@ export class LibraryDetailComponent implements OnInit {
     this.libraryId = parseInt(routeId, 10);
     this.libraryService.getLibraryNames().pipe(take(1)).subscribe(names => {
       this.libraryName = names[this.libraryId];
-      this.titleService.setTitle('Kavita - ' + this.libraryName);
+      this.titleService.setTitle('Lumiverse - ' + this.libraryName);
       this.cdRef.markForCheck();
     });
 

@@ -637,7 +637,7 @@ export class SeriesDetailComponent implements OnInit, AfterContentChecked {
       }
 
 
-      this.titleService.setTitle('Kavita - ' + this.series.name + ' Details');
+      this.titleService.setTitle('Lumiverse - ' + this.series.name + ' Details');
 
       this.seriesActions = this.actionFactoryService.getSeriesActions(this.handleSeriesActionCallback.bind(this))
               .filter(action => action.action !== Action.Edit);

@@ -50,7 +50,7 @@ export class ReadingListsComponent implements OnInit {
       if (user) {
         this.isAdmin = this.accountService.hasAdminRole(user);
         this.loadPage();
-        this.titleService.setTitle('Kavita - ' + translate('side-nav.reading-lists'));
+        this.titleService.setTitle('Lumiverse - ' + translate('side-nav.reading-lists'));
       }
     });
   }

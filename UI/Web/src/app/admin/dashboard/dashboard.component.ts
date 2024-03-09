@@ -81,6 +81,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.titleService.setTitle('Kavita - ' + translate('admin-dashboard.title'));
+    this.titleService.setTitle('Lumiverse - ' + translate('admin-dashboard.title'));
   }
 }

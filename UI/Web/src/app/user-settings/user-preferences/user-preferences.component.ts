@@ -181,7 +181,7 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Kavita - User Preferences');
+    this.titleService.setTitle('Lumiverse - User Preferences');
 
     forkJoin({
       user: this.accountService.currentUser$.pipe(take(1)),

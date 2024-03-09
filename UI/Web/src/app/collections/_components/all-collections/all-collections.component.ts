@@ -61,7 +61,7 @@ export class AllCollectionsComponent implements OnInit {
     private readonly cdRef: ChangeDetectorRef, public imageService: ImageService,
     public accountService: AccountService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.titleService.setTitle('Kavita - ' + this.translocoService.translate('all-collections.title'));
+    this.titleService.setTitle('Lumiverse - ' + this.translocoService.translate('all-collections.title'));
   }
 
   ngOnInit() {
