@@ -254,5 +254,11 @@ export class NavHeaderComponent implements OnInit {
     this.navService.toggleSideNav();
   }
 
-
+  toggleDropdown(dropdown: NgbDropdown) {
+    if (dropdown.isOpen()) {
+      dropdown.close();
+    } else {
+      dropdown.open();
+    }
+  }
 }

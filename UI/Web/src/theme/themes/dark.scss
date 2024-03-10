@@ -11,6 +11,7 @@
     --background: #16161a;
     --background-secondary: #212126;
     --background-tertiary: #373740;
+    --border-radius: 4px;
 
     --input-bg-color: #3d414a;
     --bs-primary-rgb: 158, 139, 255;
@@ -174,6 +175,7 @@
     --dropdown-item-text-color: var(--navbar-text-color);
     --dropdown-item-bg-color: var(--navbar-bg-color);
     --dropdown-overlay-color: rgba(0,0,0,0.5);
+    --dropdown-item-border-radius: var(--border-radius);
 
     /* Accordion */
     --accordion-header-text-color: rgba(74, 198, 148, 0.9);

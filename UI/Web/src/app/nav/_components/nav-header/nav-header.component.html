@@ -166,32 +166,48 @@
           </div>
           <div class="nav-item not-xs-only">
             <a routerLink="/admin/dashboard" *ngIf="user.roles.includes('Admin')" class="dark-exempt btn btn-icon" title="Server Settings">
-              <i class="fa fa-cogs nav" aria-hidden="true"></i>
+              <i class="fa fa-sliders nav" aria-hidden="true"></i>
               <span class="visually-hidden">{{t('server-settings')}}</span>
             </a>
           </div>
 
 
-          <div ngbDropdown class="nav-item dropdown" display="dynamic" placement="bottom-right" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+          <div ngbDropdown #dropdownRef="ngbDropdown" class="nav-item dropdown" display="dynamic" placement="bottom-right" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
             <button class="btn btn-outline-secondary primary-text" ngbDropdownToggle>
               <i class="fa-solid fa-user-circle align-self-center phone-hidden d-xs-inline-block d-sm-inline-block d-md-none"></i>
-              <span class="d-none d-xs-none d-sm-none d-md-inline-block">{{user.username | sentenceCase}}</span>
+              <span class="d-none d-xs-none d-sm-none d-md-inline-block">{{user.username}}</span>
             </button>
             <div ngbDropdownMenu class="p-3">
-              <div class="d-flex justify-content-center mt-3 mb-3">
-                <p class="fw-bold fs-4">{{user.username | sentenceCase}}</p>
+              <div class="d-grid justify-content-center mt-3 mb-3">
+                <span class="fw-bold fs-4">{{user.username}}</span>
 
-                <span class="badge text-bg-secondary">{{ accountService.hasAdminRole(user) ? 'Admin' : 'User'}}</span>
+                <span class="badge text-bg-primary">{{ accountService.hasAdminRole(user) ? 'Admin' : 'User'}}</span>
               </div>
-              <div>
-                <a ngbDropdownItem routerLink="/bookmarks/"><i class="fa fa-bookmark" aria-hidden="true"></i> Bookmarks</a>
+              <div class="drop-item fs-5">
+                <i class="fa fa-bookmark drop-item-icon" aria-hidden="true"></i>
+                <a class="drop-item-text" routerLink="/bookmarks/">Bookmarks</a>
               </div>
+              <div class="drop-item fs-5">
+                <i class="fa fa-bars drop-item-icon" aria-hidden="true"></i>
+                <a class="drop-item-text" routerLink="/preferences/">{{t('settings')}}</a>
+              </div>
+              <div class="drop-item fs-5">
+                <i class="fa fa-filter drop-item-icon" aria-hidden="true"></i>
+                <a class="drop-item-text" routerLink="/all-filters/">{{t('all-filters')}}</a>
+              </div>
+              <div class="drop-item fs-5">
+                <i class="fa fa-right-from-bracket drop-item-icon" aria-hidden="true"></i>
+                <a class="drop-item-text" (click)="logout()">{{t('logout')}}</a>
+              </div>
+              <!--
               <a ngbDropdownItem routerLink="/preferences/">{{t('settings')}}</a>
               <a ngbDropdownItem routerLink="/all-filters/">{{t('all-filters')}}</a>
               <a ngbDropdownItem href="https://wiki.kavitareader.com" rel="noopener noreferrer" target="_blank">{{t('help')}}</a>
               <a ngbDropdownItem routerLink="/announcements/" *ngIf="accountService.hasAdminRole(user)">{{t('announcements')}}</a>
               <a ngbDropdownItem (click)="logout()">{{t('logout')}}</a>
+            -->
             </div>
+            <div class="overlay" (click)="toggleDropdown(dropdownRef)"></div>
           </div>
         </ng-container>
       </ng-container>
