@@ -1,16 +1,5 @@
 <ng-container *transloco="let t; read: 'series-info-cards'">
   <div class="row g-0 mt-3">
-    <ng-container *ngIf="seriesMetadata">
-      <ng-container *ngIf="seriesMetadata.ageRating">
-        <div class="col-lg-1 col-md-4 col-sm-4 col-4 mb-2">
-          <app-icon-and-title [label]="t('age-rating-title')" [clickable]="true" fontClasses="fas fa-eye" (click)="handleGoTo(FilterField.AgeRating, seriesMetadata.ageRating)" [title]="t('age-rating-title')">
-            {{this.seriesMetadata.ageRating | ageRating}}
-          </app-icon-and-title>
-        </div>
-        <div class="vr d-none d-lg-block m-2"></div>
-      </ng-container>
-    </ng-container>
-
     <ng-container *ngIf="accountService.hasValidLicense$ | async">
       <div class="col-lg-1 col-md-4 col-sm-4 col-4 mb-2">
         <app-icon-and-title [label]="t('scrobbling-title')" [clickable]="libraryAllowsScrobbling"
