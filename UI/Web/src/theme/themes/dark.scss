@@ -115,6 +115,7 @@
     --tagbadge-filled-border-color: var(--background-secondary);
     --tagbadge-filled-text-color: var(--body-text-color);
     --tagbadge-filled-bg-color: var(--background-secondary);
+    --tagbadge-border-radius: var(--border-radius);
 
     /* Side Nav */
     --side-nav-bg-color: rgba(0,0,0,0.2);
@@ -333,12 +334,12 @@ app-read-more .collapsed {
     margin-bottom: 0;
 }
 
-.tagbadge {
+.tagbadge, app-badge-expander .expander {
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
 }
 
-.tagbadge span {
+.tagbadge span, app-badge-expander .expander {
     text-transform: uppercase;
     font-size: calc(8px + 0.2vmin);
 }
