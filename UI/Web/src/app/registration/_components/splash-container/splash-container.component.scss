@@ -39,7 +39,7 @@
 
     .card {
         box-shadow: 0 0 20px 20px rgb(0 0 0 / 30%) !important;
-        background-color: #212328;
+        background-color: var(--background);
         color: #fff;
         .content { padding: 20px 40px 30px 40px; }
         //width: clamp(100%/(N + 1) + 0.1%, (400px - 100vw)*1000, 100%);
@@ -61,7 +61,7 @@
         }
 
         .card-footer {
-            background-color: #2e2f37;
+            background-color: var(--background-secondary);
             background-clip: border-box;
             padding: 12px 35px;
             font-size: 16px;
