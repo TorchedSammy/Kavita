@@ -88,7 +88,9 @@ export class SeriesMetadataDetailExtrasComponent implements OnChanges {
   constructor() {
     // If on desktop, we can just have all the data expanded by default:
     // actually NO BECAUSE THAT'S ANNOYING.
+    // take that back. since we made the layout changes, its fine to always be expanded.
     //this.isCollapsed = this.utilityService.getActiveBreakpoint() < Breakpoint.Desktop;
+    this.isCollapsed = false
     this.cdRef.markForCheck();
   }
 
