@@ -2,6 +2,10 @@ span {
     color: var(--navbar-text-color);
 }
 
+hr {
+    opacity: 1;
+    margin: 0.5rem;
+}
 .dropdown-toggle {
     z-index: 3;
     position: sticky;
@@ -38,6 +42,13 @@ span {
     flex-wrap: wrap;
     padding: 0.3em 1em;
     font-weight: bold;
+    border-radius: var(--dropdown-item-border-radius);
+    transition: background-color 0.1s ease-in-out;
+}
+
+.drop-item:hover {
+    background-color: var(--dropdown-item-hover-bg-color);
+    color: var(--dropdown-item-hover-text-color);
 }
 
 .drop-item-text, .drop-item-icon {
@@ -46,12 +57,6 @@ span {
 
 .drop-item-text {
     text-decoration: none;
-}
-
-.drop-item:hover {
-    background-color: var(--dropdown-item-hover-bg-color);
-    color: var(--dropdown-item-hover-text-color);
-    border-radius: var(--dropdown-item-border-radius);
 }
 
 .btn:focus, .btn:hover {
